@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=s, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/theme/light.css" id="theme">
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+        <title>FifoWeather</title>
+    </head>
+    <body>
+        <header>
+            <h1>FifoWeather</h1>
+
+            <div class="hamburger">
+                <div class="line"></div>
+            </div>
+
+            <div class="right">
+                <div class="theme">
+                    Dark
+                    <img src="./assets/img/icons/moon.svg" alt="dark theme">
+                </div>
+                
+                <div class="units">
+                    <p id="celcius">°C</p>
+                    <p id="fahrenheit" class="not-selected">°F</p>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="search-bar">
+                <input type="search" id="search" placeholder="Search other city...">
+                <div class="btn-wrapper">
+                    <img src="./assets/img/icons/x.svg" alt="reset" class="btn" id="reset">
+                    <div class="btn">
+                        <img src="./assets/img/icons/search.svg" alt="search" id="search-btn">
+                        <p>Search</p>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="weather">
+                <div class="general-info">
+                    <div class="container-top">
+                        <div class="left">
+                            <div class="city-date">
+                                <p class="date" id="date">Today, 10 Aug</p>
+                                <h2 class="city" id="city">Palermo</h2>
+                            </div>
+                            <h1 id="temperature">10°</h1>
+                        </div>
+                        <img class="right" src="./assets/img/weather/rain.png" alt="weather icon">
+                    </div>
+
+                    <h1 id="weather-description">Raining</h1>
+                    
+                    <div class="details">
+                        <p>Other information</p>
+                        <div class="details-list">
+                            <div class="detail">
+                                <img src="./assets/img/icons/wind.svg" alt="wind">
+                                <p id="wind">15km</p>
+                                <small>Wind</small>
+                            </div>
+                            <div class="detail">
+                                <img src="./assets/img/icons/droplet.svg" alt="humidity">
+                                <p id="humidity">32%</p>
+                                <small>Humidity</small>
+                            </div>
+                            <div class="detail">
+                                <img src="./assets/img/icons/pressure.svg" alt="precipitation">
+                                <p id="pressure">15km</p>
+                                <small>Pressure</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="other-informations">
+                    <div class="forecast">
+                        <div class="carousel">
+                        </div>
+                    </div>
+
+                    <div class="graph">
+                        <p>Day temperature</p>
+                        <canvas id="chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+        <script src="./js/general-script.js"></script>
+        <script src="./js/API.js"></script>
+        <script src="./js/chart.js"></script>
+    </body>
+</html>
