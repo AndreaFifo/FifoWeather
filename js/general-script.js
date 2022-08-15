@@ -80,10 +80,10 @@ searchBtn.addEventListener('click', () => {
 /* Declaration of swiper element */
 const swiper = new Flickity('.carousel', {
     prevNextButtons: false,
-    cellAlign: 'center',
+    cellAlign: 'left',
     contain: true,
     resize: true,
-    pageDots: true,
+    pageDots: false,
     freeScroll: true,
     draggable: '>1'
 })

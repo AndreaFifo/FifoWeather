@@ -102,3 +102,7 @@ function removeForecast(){
         }
     }
 }
+
+function setImage(element, weather){
+    if(weather == '')
+}
