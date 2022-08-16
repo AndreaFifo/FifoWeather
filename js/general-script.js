@@ -22,9 +22,9 @@ const themeBtn = document.querySelector('.theme');
 const theme = document.getElementById('theme');
     
 themeBtn.addEventListener('click', () => {
-    theme.setAttribute('href', theme.getAttribute('href') === '../css/theme/light.css' ? '../css/theme/dark.css' : '../css/theme/light.css');
+    theme.setAttribute('href', theme.getAttribute('href') === './css/theme/light.css' ? './css/theme/dark.css' : './css/theme/light.css');
     
-    themeBtn.innerHTML = theme.getAttribute('href') === '../css/theme/light.css' ? 'Dark <img src="./assets/img/icons/moon.svg" alt="dark theme">' : 'Light <img src="./assets/img/icons/sun.svg" alt="light theme">';
+    themeBtn.innerHTML = theme.getAttribute('href') === './css/theme/light.css' ? 'Dark <img src="./assets/img/icons/moon.svg" alt="dark theme">' : 'Light <img src="./assets/img/icons/sun.svg" alt="light theme">';
 });
 
 
