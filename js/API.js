@@ -11,14 +11,12 @@ function launchApi(){
             return response.json();
         })
         .then((data) => {
-            console.log(data);
             return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data[0].lat}&lon=${data[0].lon}&units=${unit}&appid=${apiKey}`);
         })
         .then((response) => {
             return response.json();
         })
         .then((data) => {
-            console.log(data)
             const date = new Date();
             document.getElementById('date').innerText = 'Today, ' + date.getDate() + ' ' + date.toLocaleString('en-us', { month: 'short' });
 
@@ -43,6 +41,8 @@ function launchApi(){
             drawChart(graphData);
 
             setHourlyData(data.hourly);
+
+            document.querySelector('.weather').classList.remove('hidden');
         })
         .catch((err) => {
             console.log(err);

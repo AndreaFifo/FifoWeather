@@ -87,7 +87,3 @@ const swiper = new Flickity('.carousel', {
     freeScroll: true,
     draggable: '>1'
 })
-
-
-
-
