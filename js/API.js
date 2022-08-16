@@ -1,5 +1,4 @@
-const geolocatationKey = '5595c5460b52963202d8e3e03f6291da';
-const weatherKey = 'ff24c4014e5de01237371f8e9f162185';
+const apiKey = 'ff24c4014e5de01237371f8e9f162185';
 
 let unit = 'metric';
 let unitLetter = '°C';
@@ -7,12 +6,13 @@ let unitMesure = 'km/h';
 let city = '';
 
 function launchApi(){
-    fetch(`http://api.positionstack.com/v1/forward?access_key=${geolocatationKey}&query=${city}`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`)
         .then((response) => {
             return response.json();
         })
         .then((data) => {
-            return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.data[0].latitude}&lon=${data.data[0].longitude}&units=${unit}&appid=${weatherKey}`);
+            console.log(data);
+            return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data[0].lat}&lon=${data[0].lon}&units=${unit}&appid=${apiKey}`);
         })
         .then((response) => {
             return response.json();
