@@ -61,7 +61,7 @@ const config = {
                     display: false,
                     stepSize: 55
                 },
-                min: 15,
+                min: 0,
             }
         },
         legend: {
@@ -90,6 +90,21 @@ const myChart = new Chart(canvas, config);
 //Updating data of chart when a city is searched
 function drawChart(dayTemps){
     data.datasets[0].data = dayTemps;
+    config.options.scales.y.min = unitLetter == '°C' ? Math.min.apply(Math, dayTemps) / 2 : Math.min.apply(Math, dayTemps) / 2;
+    
+    myChart.update();
+}
+
+if(window.innerWidth <= 362){
+    const newLabels = [
+        'Nty',
+        'Morn',
+        'Aftn',
+        'Eve'
+    ];
+
+    data.labels = newLabels;
 
     myChart.update();
 }
+

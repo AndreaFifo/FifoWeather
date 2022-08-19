@@ -13,6 +13,12 @@
     src: url(../assets/font/Lexend-Regular.ttf);
 }
 
+@font-face {
+    font-family: 'Lexend-Light';
+    src: url(../assets/font/Lexend-Light.ttf);
+}
+
+
 *{
     margin: 0;
     padding: 0;
@@ -191,6 +197,10 @@ header .right .units #celcius::after{
     .weather{
         height: auto !important;
     }
+
+    .graph{
+        padding: 20px 10px 40px !important;
+    }
 }
 
 
@@ -321,7 +331,6 @@ input[type="search"]::-webkit-search-cancel-button{
 .weather{
     display: flex;
     width: 100%;
-    height: 553px;
     gap: 40px;
 }
 
@@ -339,7 +348,7 @@ input[type="search"]::-webkit-search-cancel-button{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 300px;
+    height: 275px;
 }
 
 .general-info .container-top .left{
@@ -372,13 +381,18 @@ input[type="search"]::-webkit-search-cancel-button{
     padding-top: 20px;
 }
 
-.general-info #weather-description, .swiper-slide .text p{
+.general-info #general-weather, .carousel-cell .text p{
+    color: var(--drk-blue);
+}
+
+.general-info #general-weather{
     font-size: 40px;
-    background: linear-gradient(180deg, #2D4059 0%, rgba(73, 105, 148, 0.83) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
     font-family: 'Lexend-SemiBold';
+}
+
+.general-info #general-description{
+    color: var(--lgt-blue);
+    font-family: 'Lexend-Light';
 }
 
 .details{
@@ -449,9 +463,13 @@ input[type="search"]::-webkit-search-cancel-button{
         align-self: center;
     }
 
-    .general-info #weather-description{
+    .general-info #general-weather, .general-info #general-description{
         text-align: center;
         margin: 10px 0;
+    }
+
+    .general-info #general-description{
+        margin-top: 0px;
     }
 }
 
@@ -491,7 +509,6 @@ input[type="search"]::-webkit-search-cancel-button{
 
 
 .other-informations{
-    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;

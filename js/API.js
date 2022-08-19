@@ -5,26 +5,27 @@ let unitLetter = '°C';
 let unitMesure = 'km/h';
 let city = '';
 
+let date = new Date();
+
 function launchApi(){
-    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`, {cache: 'no-cache'})
         .then((response) => {
             return response.json();
         })
         .then((data) => {
-            return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data[0].lat}&lon=${data[0].lon}&units=${unit}&appid=${apiKey}`);
+            return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data[0].lat}&lon=${data[0].lon}&units=${unit}&appid=${apiKey}`, {cache: 'no-cache'});
         })
         .then((response) => {
             return response.json();
         })
         .then((data) => {
-            const date = new Date();
             document.getElementById('date').innerText = 'Today, ' + date.getDate() + ' ' + date.toLocaleString('en-us', { month: 'short' });
 
             let generalData = {
                 city: city.charAt(0).toUpperCase() + city.slice(1),
                 temp: Math.round((data.daily[0].temp.max + data.daily[0].temp.min) / 2),
                 weather: data.daily[0].weather[0].main,
-                descr: data.daily[0].weather[0].description,
+                descr: data.daily[0].weather[0].description.charAt(0).toUpperCase() + data.daily[0].weather[0].description.slice(1),
                 icon: data.daily[0].weather[0].icon,
                 wind: data.daily[0].wind_speed,
                 humidity: data.daily[0].humidity,
@@ -52,7 +53,8 @@ function launchApi(){
 function setGeneralData(data){
     document.getElementById('city').innerText = data.city;
     document.getElementById('temperature').innerText = data.temp + unitLetter;
-    document.getElementById('weather-description').innerText = data.weather;
+    document.getElementById('general-weather').innerText = data.weather;
+    document.getElementById('general-description').innerText = data.descr;
     document.getElementById('wind').innerText = data.wind + ' ' + unitMesure;
     document.getElementById('humidity').innerText = data.humidity + '%';
     document.getElementById('pressure').innerText = data.pressure + ' Pa';
@@ -61,7 +63,6 @@ function setGeneralData(data){
 }
 
 function setHourlyData(data){
-    let date = new Date();
     let currentHour = date.getHours();
     let hoursLeftMidNight = 23 - currentHour;
 
@@ -115,36 +116,41 @@ function removeForecast(){
 
 function setImage(element, weather, icon, description){
     if(weather.toLowerCase() == 'clear'){
-        element.setAttribute('src', './assets/img/weather/sun.png');
+        if(icon == '01d')
+            element.setAttribute('src', './assets/img/weather/clear-sun.svg');
+        else
+            element.setAttribute('src', './assets/img/weather/moon.svg');
     }
-    else if(weather.toLowerCase() == 'clouds' && (icon == '02d' || icon == '02n' || icon == '03d' || icon == '03n')){
-        element.setAttribute('src', './assets/img/weather/sun-cloud.png');
+    else if(weather.toLowerCase() == 'clouds'){
+        if(description == 'few clouds'){
+            if(icon == '02d')
+                element.setAttribute('src', './assets/img/weather/sun-lil-cloudy.svg');
+            else
+                element.setAttribute('src', './assets/img/weather/night-lil-cloudy.svg');
+        }
+        else if(description == 'scattered clouds'){
+            if(icon == '03d')
+                element.setAttribute('src', './assets/img/weather/sun-mid-cloudy.svg');
+            else
+                element.setAttribute('src', './assets/img/weather/night-mid-cloudy.svg');
+        } 
+        else
+            element.setAttribute('src', './assets/img/weather/broken-cloudy.svg');    
     }
-    else if(weather.toLowerCase() == 'clouds' && (icon != '02d' && icon != '02n')){
-        element.setAttribute('src', './assets/img/weather/cloudy.png');
-    }
-    else if(weather.toLowerCase() == 'rain' && (icon == '09d' || icon == '09n')){
-        element.setAttribute('src', './assets/img/weather/rain.png');
-    }
-    else if(weather.toLowerCase() == 'rain' && (icon != '09d' && icon != '09n')){
-        element.setAttribute('src', './assets/img/weather/sun-rain.png');
-    }
-    else if(weather.toLowerCase() == 'drizzle'){
-        element.setAttribute('src', './assets/img/weather/drizzle.png');
-    }
-    else if(weather.toLowerCase() == 'snow'){
-        element.setAttribute('src', './assets/img/weather/snow.png');
-    }
-    else if(weather.toLowerCase() == 'snow'){
-        element.setAttribute('src', './assets/img/weather/snow.png');
+    else if(weather.toLowerCase() == 'rain' || weather.toLowerCase() == 'drizzle'){
+        if(description == 'shower rain' || description.includes('drizzle'))
+            element.setAttribute('src', './assets/img/weather/rain.svg');
+        else{
+            if(icon == '10d')
+                element.setAttribute('src', './assets/img/weather/sun-rain.svg');
+            else
+                element.setAttribute('src', './assets/img/weather/night-rain.svg');
+        }
     }
     else if(weather.toLowerCase() == 'thunderstorm' && (description.includes('rain') || description.includes('drizzle'))){
-        element.setAttribute('src', './assets/img/weather/thunderstorm-rain.png');
+        element.setAttribute('src', './assets/img/weather/heavyrain-storm.svg');
     }
     else if(weather.toLowerCase() == 'thunderstorm' && (!description.includes('rain') && !description.includes('drizzle'))){
-        element.setAttribute('src', './assets/img/weather/thunderstorm.png');
-    }
-    else if(weather.toLowerCase() == 'snow'){
-        element.setAttribute('src', './assets/img/weather/snow.png');
+        element.setAttribute('src', './assets/img/weather/thunder.svg');
     }
 }
