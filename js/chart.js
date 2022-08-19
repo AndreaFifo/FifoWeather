@@ -59,7 +59,7 @@ const config = {
                 },
                 ticks: {
                     display: false,
-                    stepSize: 55
+                    stepSize: 53
                 },
                 min: 0,
             }
@@ -90,7 +90,7 @@ const myChart = new Chart(canvas, config);
 //Updating data of chart when a city is searched
 function drawChart(dayTemps){
     data.datasets[0].data = dayTemps;
-    config.options.scales.y.min = unitLetter == '°C' ? Math.min.apply(Math, dayTemps) / 2 : Math.min.apply(Math, dayTemps) / 2;
+    config.options.scales.y.min = Math.min.apply(Math, dayTemps) - 5;
     
     myChart.update();
 }

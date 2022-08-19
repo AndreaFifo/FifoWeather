@@ -117,40 +117,40 @@ function removeForecast(){
 function setImage(element, weather, icon, description){
     if(weather.toLowerCase() == 'clear'){
         if(icon == '01d')
-            element.setAttribute('src', './assets/img/weather/clear-sun.svg');
+            element.setAttribute('src', './assets/img/weather/clear-sun.png');
         else
-            element.setAttribute('src', './assets/img/weather/moon.svg');
+            element.setAttribute('src', './assets/img/weather/moon.png');
     }
     else if(weather.toLowerCase() == 'clouds'){
         if(description == 'few clouds'){
             if(icon == '02d')
-                element.setAttribute('src', './assets/img/weather/sun-lil-cloudy.svg');
+                element.setAttribute('src', './assets/img/weather/sun-lil-cloudy.png');
             else
-                element.setAttribute('src', './assets/img/weather/night-lil-cloudy.svg');
+                element.setAttribute('src', './assets/img/weather/night-lil-cloudy.png');
         }
         else if(description == 'scattered clouds'){
             if(icon == '03d')
-                element.setAttribute('src', './assets/img/weather/sun-mid-cloudy.svg');
+                element.setAttribute('src', './assets/img/weather/sun-mid-cloudy.png');
             else
-                element.setAttribute('src', './assets/img/weather/night-mid-cloudy.svg');
+                element.setAttribute('src', './assets/img/weather/night-mid-cloudy.png');
         } 
         else
-            element.setAttribute('src', './assets/img/weather/broken-cloudy.svg');    
+            element.setAttribute('src', './assets/img/weather/broken-cloudy.png');    
     }
     else if(weather.toLowerCase() == 'rain' || weather.toLowerCase() == 'drizzle'){
         if(description == 'shower rain' || description.includes('drizzle'))
-            element.setAttribute('src', './assets/img/weather/rain.svg');
+            element.setAttribute('src', './assets/img/weather/rain.png');
         else{
             if(icon == '10d')
-                element.setAttribute('src', './assets/img/weather/sun-rain.svg');
+                element.setAttribute('src', './assets/img/weather/sun-rain.png');
             else
-                element.setAttribute('src', './assets/img/weather/night-rain.svg');
+                element.setAttribute('src', './assets/img/weather/night-rain.png');
         }
     }
     else if(weather.toLowerCase() == 'thunderstorm' && (description.includes('rain') || description.includes('drizzle'))){
-        element.setAttribute('src', './assets/img/weather/heavyrain-storm.svg');
+        element.setAttribute('src', './assets/img/weather/heavyrain-storm.png');
     }
     else if(weather.toLowerCase() == 'thunderstorm' && (!description.includes('rain') && !description.includes('drizzle'))){
-        element.setAttribute('src', './assets/img/weather/thunder.svg');
+        element.setAttribute('src', './assets/img/weather/thunder.png');
     }
 }
