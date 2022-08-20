@@ -74,6 +74,10 @@ searchBtn.addEventListener('click', () => {
     if(searchBar.value.trim() != "" && searchBar.value.trim() != null){
         city = searchBar.value.trim();
         launchApi();
+        setInterval(() => {
+            swiper.resize();
+        }, 1);
+        
     }
 });
 
@@ -85,5 +89,5 @@ const swiper = new Flickity('.carousel', {
     resize: true,
     pageDots: false,
     freeScroll: true,
-    draggable: '>1'
+    draggable: '>1',
 })

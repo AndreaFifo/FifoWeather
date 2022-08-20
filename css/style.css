@@ -201,6 +201,10 @@ header .right .units #celcius::after{
     .graph{
         padding: 20px 10px 40px !important;
     }
+
+    .graph p{
+        padding-left: 10px;
+    }
 }
 
 
@@ -226,12 +230,13 @@ main{
 .search-bar input{
     width: 100%;
     padding: 15px;
+    padding-right: 120px;
     color: var(--drk-blue);
     border: none;
     outline: none;
     border-radius: 7px;
     font-family: 'Lexend-SemiBold';
-    font-size: clamp(1.125rem, 0.6250rem + 2.8571vw, 1.25rem);
+    font-size: clamp(1rem, 0.2222rem + 4.4444vw, 1.25rem);
 }
 
 input[type="search"]::-webkit-search-decoration,
@@ -290,7 +295,7 @@ input[type="search"]::-webkit-search-cancel-button{
     cursor: pointer;
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 460px) {
     .search-bar{
         flex-direction: column;
         gap: 10px;
@@ -375,11 +380,11 @@ input[type="search"]::-webkit-search-cancel-button{
 }
 
 .container-top .left .city-date h2{
-    font-size: 26px;
+    font-size: clamp(1rem, 0.1071rem + 5.1020vw, 1.625rem);
 }
 
 .container-top .left h1{
-    font-size: 40px;
+    font-size: clamp(1.563rem, 0.2244rem + 7.6490vw, 2.5rem);
 }
 
 .general-info .container-top img{
@@ -442,6 +447,7 @@ input[type="search"]::-webkit-search-cancel-button{
         flex-direction: column;
         height: auto;
         align-items: center;
+        gap: 60px;
     }
     
     .weather .general-info{
@@ -449,8 +455,6 @@ input[type="search"]::-webkit-search-cancel-button{
         width: 100%;
         max-width: 400px;
     }
-
-
 }
 
 
@@ -468,6 +472,14 @@ input[type="search"]::-webkit-search-cancel-button{
         width: 100%;
         flex-direction: row;
         align-self: center;
+    }
+
+    .weather .general-info .left > *{
+        width: 50%;
+    }
+
+    .weather .general-info .left h1{
+        text-align: right;
     }
 
     .general-info #general-weather, .general-info #general-description{
@@ -599,5 +611,5 @@ input[type="search"]::-webkit-search-cancel-button{
 }
 
 .hidden{
-    opacity: 0;
+    display: none;
 }
