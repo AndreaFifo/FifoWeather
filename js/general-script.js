@@ -76,7 +76,7 @@ searchBtn.addEventListener('click', () => {
         launchApi();
         setInterval(() => {
             swiper.resize();
-        }, 1);
+        }, 50);
         
     }
 });
