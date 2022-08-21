@@ -1,18 +1,24 @@
+//Key of openweather API
 const apiKey = 'ff24c4014e5de01237371f8e9f162185';
 
+//Declaring variables that will be used in API request
 let unit = 'metric';
 let unitLetter = '°C';
 let unitMesure = 'km/h';
 let city = '';
 
+//Declaring date to calculate forecastes and other things related to time
 let date = new Date();
 
+//Function that start the API request, it will fetch all the data and will call other functions to display/calculate other information
 function launchApi(){
+    //Geolocalization API
     fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`, {cache: 'no-cache'})
         .then((response) => {
             return response.json();
         })
         .then((data) => {
+            //Weather API
             return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data[0].lat}&lon=${data[0].lon}&units=${unit}&appid=${apiKey}`, {cache: 'no-cache'});
         })
         .then((response) => {
@@ -21,6 +27,7 @@ function launchApi(){
         .then((data) => {
             document.getElementById('date').innerText = 'Today, ' + date.getDate() + ' ' + date.toLocaleString('en-us', { month: 'short' });
 
+            //Creating object to make easier the selection of data on function.
             let generalData = {
                 city: city.charAt(0).toUpperCase() + city.slice(1),
                 temp: Math.round((data.daily[0].temp.max + data.daily[0].temp.min) / 2),
@@ -44,6 +51,8 @@ function launchApi(){
             setHourlyData(data.hourly);
 
             document.querySelector('.weather').classList.remove('hidden');
+            //When the container is hidden and the class 'hidden' is removed, idk why, but the carousel doesn't display at all.
+            //So thanks to this interval, the carousel will be resized after 1 millisecond when the class is removed.
             setInterval(() => {
                 swiper.resize();
             }, 1);
@@ -53,6 +62,7 @@ function launchApi(){
         });
 }
 
+//Function that display all the information of the current day on the left container(Desktop view) or first container(Mobile view)
 function setGeneralData(data){
     document.getElementById('city').innerText = data.city;
     document.getElementById('temperature').innerText = data.temp + unitLetter;
@@ -65,6 +75,7 @@ function setGeneralData(data){
     setImage(document.getElementById('general-weather-img'), data.weather, data.icon, data.descr);
 }
 
+//Function that calculate the hours left to 23 and create forecast containers
 function setHourlyData(data){
     let currentHour = date.getHours();
     let hoursLeftMidNight = 23 - currentHour;
@@ -78,6 +89,7 @@ function setHourlyData(data){
     swiper.select(0, false, true);
 }
 
+//Function that create forecastes and add them into the carousel
 function addForecast(forecast, hour){
     const carouselCell = document.createElement('div');
     carouselCell.classList.add('carousel-cell');
@@ -107,6 +119,7 @@ function addForecast(forecast, hour){
     swiper.insert(carouselCell);
 }
 
+//Function that remove the actual forecastes displayed if you've already done a research
 function removeForecast(){
     const forecastes = document.querySelectorAll('.carousel-cell');
 
@@ -117,6 +130,7 @@ function removeForecast(){
     }
 }
 
+//Function that, depending on the weather(in particular on the icon and description), set the source for the images to display the correct weather icon
 function setImage(element, weather, icon, description){
     if(weather.toLowerCase() == 'clear'){
         if(icon == '01d')

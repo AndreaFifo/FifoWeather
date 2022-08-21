@@ -1,0 +1,7 @@
+:root{
+    --drk-blue: #2D4059;
+    --lgt-blue: #496994;
+    --white: #F8F8F8;
+    
+    --bg: linear-gradient(127.54deg, #1E2D42 21.73%, #16263E 35.86%, #1C2E48 50%, #16263E 64.14%, #1D2A3D 78.27%);
+}

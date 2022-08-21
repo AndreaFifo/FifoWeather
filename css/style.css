@@ -30,7 +30,7 @@ html, body{
 }
 
 body{
-    background: linear-gradient(167.95deg, var(--lng-1) 0%, var(--lng-2) 34.9%, var(--lng-3) 70.31%, var(--lng-4) 100%);
+    background: var(--bg);
     min-height: 100vh;
     font-family: 'Lexend-Regular';
     display: flex;
@@ -347,13 +347,19 @@ input[type="search"]::-webkit-search-cancel-button{
 }
 
 .weather .general-info{
-    background: rgba(255, 255, 255, 0.226);
-    border-radius: 14px;
     display: flex;
     flex-direction: column;
     padding: 0 40px 20px;
     min-width: 400px;
     height: max-content;
+}
+
+.weather .general-info, .carousel-cell{
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 16px;
+    backdrop-filter: blur(6.1px);
+    -webkit-backdrop-filter: blur(6.1px);
+    border: 1px solid rgba(255, 255, 255, 0.31);
 }
 
 .weather .general-info .container-top{
@@ -550,8 +556,6 @@ input[type="search"]::-webkit-search-cancel-button{
     justify-content: space-between;
     gap: 10px;
     padding: 20px 40px;
-    background: rgba(255, 255, 255, 0.226);
-    border-radius: 20px;
     min-width: 150px;
     min-height: 220px;
     text-align: center;

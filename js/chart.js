@@ -95,6 +95,7 @@ function drawChart(dayTemps){
     myChart.update();
 }
 
+//If the view port width is too small(in this case less or equal to 362px) the labels of the chart will be changed with some abbrevations of them.
 if(window.innerWidth <= 362){
     const newLabels = [
         'Nty',
