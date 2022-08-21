@@ -74,9 +74,7 @@ searchBtn.addEventListener('click', () => {
     if(searchBar.value.trim() != "" && searchBar.value.trim() != null){
         city = searchBar.value.trim();
         launchApi();
-        setInterval(() => {
-            swiper.resize();
-        }, 50);
+        
         
     }
 });
