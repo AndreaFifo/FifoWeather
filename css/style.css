@@ -354,12 +354,10 @@ input[type="search"]::-webkit-search-cancel-button{
     height: max-content;
 }
 
-.weather .general-info, .carousel-cell{
-    background: rgba(255, 255, 255, 0.14);
+.weather .general-info, .carousel-cell, .graph{
+    background: var(--bg-container);
     border-radius: 16px;
-    backdrop-filter: blur(6.1px);
-    -webkit-backdrop-filter: blur(6.1px);
-    border: 1px solid rgba(255, 255, 255, 0.31);
+    border: var(--border-container);
 }
 
 .weather .general-info .container-top{
@@ -414,7 +412,7 @@ input[type="search"]::-webkit-search-cancel-button{
 }
 
 .details{
-    background: linear-gradient(111.59deg, var(--drk-blue) 3.28%, var(--lgt-blue) 98.14%);
+    background: var(--otherinfo-container);
     display: flex;
     flex-direction: column;
     gap: 30px;

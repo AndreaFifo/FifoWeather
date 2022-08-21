@@ -2,6 +2,9 @@
     --drk-blue: #2D4059;
     --lgt-blue: #496994;
     --white: #F8F8F8;
+    --bg-container: rgba(255, 255, 255, 0.226);
+    --border-container: 1px solid rgba(255, 255, 255, 0.31);
+    --otherinfo-container: linear-gradient(111.59deg, var(--drk-blue) 3.28%, var(--lgt-blue) 98.14%);
     
-    --bg: linear-gradient(167.95deg, #92C5FE 0%, rgba(179, 226, 255, 0.99) 34.9%, #AEE3FE 70.31%, #E7F0FD 100%);;
+    --bg: linear-gradient(167.95deg, #92C5FE 0%, rgba(179, 226, 255, 0.99) 34.9%, #AEE3FE 70.31%, #E7F0FD 100%);
 }
