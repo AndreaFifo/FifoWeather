@@ -44,6 +44,9 @@ function launchApi(){
             setHourlyData(data.hourly);
 
             document.querySelector('.weather').classList.remove('hidden');
+            setInterval(() => {
+                swiper.resize();
+            }, 1);
         })
         .catch((err) => {
             console.log(err);
