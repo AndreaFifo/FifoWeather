@@ -75,10 +75,33 @@ searchBtn.addEventListener('click', () => {
     if(searchBar.value.trim() != "" && searchBar.value.trim() != null){
         city = searchBar.value.trim();
         launchApi();
-        
-        
     }
 });
+
+
+
+/* Selecting forecast visualization when user click on 'Hourly' or 'Daily' */
+const settingsTime = document.querySelectorAll('.time p');
+settingsTime.forEach((e, i) => {
+    e.addEventListener('click', () => {
+        settingsTime[0].classList.remove('selected');
+        settingsTime[1].classList.remove('selected');
+
+        if(i == 0){
+            document.querySelector('.selected-div').style.left = '0';
+            setSwiperData(hourlyData, 'h');
+        }
+        else{
+            document.querySelector('.selected-div').style.left = '50%';
+            setSwiperData(dailyData, 'd');
+        }
+
+        animateCarousel();
+        e.classList.add('selected');
+    })
+})
+
+
 
 /* Declaration of swiper element */
 const swiper = new Flickity('.carousel', {
@@ -90,3 +113,14 @@ const swiper = new Flickity('.carousel', {
     freeScroll: true,
     draggable: '>1',
 })
+
+function animateCarousel(){
+    const carousel = document.querySelector('.carousel');
+    carousel.classList.add('animate__animated', 'animate__fadeIn', 'animate__faster');
+    carousel.addEventListener('animationend', () => {
+        carousel.classList.remove('animate__animated', 'animate__fadeIn', 'animate__faster');
+    })
+}
+
+
+

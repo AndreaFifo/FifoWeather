@@ -10,6 +10,9 @@ let city = '';
 //Declaring date to calculate forecastes and other things related to time
 let date = new Date();
 
+let dailyData = {};
+let hourlyData = {};
+
 //Function that start the API request, it will fetch all the data and will call other functions to display/calculate other information
 function launchApi(){
     //Geolocalization API
@@ -25,6 +28,7 @@ function launchApi(){
             return response.json();
         })
         .then((data) => {
+            console.log(data)
             document.getElementById('date').innerText = 'Today, ' + date.getDate() + ' ' + date.toLocaleString('en-us', { month: 'short' });
 
             //Creating object to make easier the selection of data on function.
@@ -48,7 +52,9 @@ function launchApi(){
             ];
             drawChart(graphData);
 
-            setHourlyData(data.hourly);
+            hourlyData = data.hourly;
+            dailyData = data.daily;
+            setSwiperData(hourlyData, 'h');
 
             document.querySelector('.weather').classList.remove('hidden');
             //When the container is hidden and the class 'hidden' is removed, idk why, but the carousel doesn't display at all.
@@ -76,26 +82,34 @@ function setGeneralData(data){
 }
 
 //Function that calculate the hours left to 23 and create forecast containers
-function setHourlyData(data){
-    let currentHour = date.getHours();
-    let hoursLeftMidNight = 23 - currentHour;
-
+function setSwiperData(data, setting){
     removeForecast();
 
-    for(let i = 0; i <= hoursLeftMidNight; i++, currentHour++){
-        addForecast(data[i], currentHour);
+    if(setting == 'h'){
+        let hour = date.getHours();
+        let hoursLeftMidNight = 23 - hour;
+
+        for(let i = 0; i <= hoursLeftMidNight; i++, hour++){
+            addForecast(data[i], hour, 'h');
+        }
+    }
+    else if(setting == 'd'){
+        let dailyForecastDate = new Date();
+        for(let i = 1; i <= 7; i++){
+            dailyForecastDate.setDate(dailyForecastDate.getDate() + 1);
+            addForecast(data[i], dailyForecastDate.getDate() + ' ' + dailyForecastDate.toLocaleString('en-us', { month: 'short' }), 'd');
+        }
     }
 
     swiper.select(0, false, true);
 }
 
 //Function that create forecastes and add them into the carousel
-function addForecast(forecast, hour){
+function addForecast(forecast, info, type){
     const carouselCell = document.createElement('div');
     carouselCell.classList.add('carousel-cell');
 
-    const hourP = document.createElement('p');
-    hourP.innerText = hour  + ':00';
+    const information = document.createElement('p');
 
     const img = document.createElement('img');
     img.setAttribute('alt', 'weather icon');
@@ -105,17 +119,24 @@ function addForecast(forecast, hour){
     textDiv.classList.add('text');
 
     const degree = document.createElement('h2');
-    degree.innerText = Math.round(forecast.temp) + unitLetter;
 
     const weather = document.createElement('p');
     weather.innerText = forecast.weather[0].main;
 
+    if(type == 'h'){
+        information.innerText = info  + ':00';
+        degree.innerText = Math.round(forecast.temp) + unitLetter;
+    }
+    else if(type == 'd'){
+        information.innerText = info;
+        degree.innerText = Math.round((forecast.temp.max + forecast.temp.min) / 2) + unitLetter;
+    }
+
     textDiv.appendChild(degree);
     textDiv.appendChild(weather);
-    carouselCell.appendChild(hourP);
+    carouselCell.appendChild(information);
     carouselCell.appendChild(img);
     carouselCell.appendChild(textDiv);
-
     swiper.insert(carouselCell);
 }
 

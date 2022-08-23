@@ -18,6 +18,9 @@
     src: url(../assets/font/Lexend-Light.ttf);
 }
 
+:root{
+    --animate-delay: 0.1s
+}
 
 *{
     margin: 0;
@@ -544,7 +547,49 @@ input[type="search"]::-webkit-search-cancel-button{
     width: 100%;
     overflow: hidden;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
     min-height: 220px;
+}
+
+.forecast .time{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    width: max-content;
+    background: var(--bg-container);
+    border-radius: 16px;
+    border: 1px solid var(--border-container);
+    color: var(--drk-blue);
+    font-family: 'Lexend-SemiBold';
+    
+}
+
+.forecast .time p{
+    width: 50%;
+    padding: 10px 30px;
+    z-index: 2;
+    text-align: center;
+}
+.forecast .time .selected{
+    color: var(--white);
+    transition: color 0.1s ease-in-out 0.1s;
+}
+
+.forecast .time .selected-div{
+    background: var(--drk-blue);
+    border-radius: 16px;
+    position: absolute;
+    left: 0;
+    padding: 10px 30px;
+    z-index: 1;
+    width: 50%;
+    height: 40px;
+    transition: left 0.3s ease-in-out;
 }
 
 .carousel-cell{
@@ -595,7 +640,7 @@ input[type="search"]::-webkit-search-cancel-button{
 .graph{
     width: 100%;
     height: 100%;
-    max-height: 300px;
+    max-height: 244px;
     position: relative;
     background: rgba(255, 255, 255, 0.226);
     padding: 20px 30px 40px;
