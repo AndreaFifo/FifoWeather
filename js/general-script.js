@@ -112,6 +112,7 @@ const swiper = new Flickity('.carousel', {
     pageDots: false,
     freeScroll: true,
     draggable: '>1',
+    groupCells: false,
 })
 
 function animateCarousel(){
