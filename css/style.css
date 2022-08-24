@@ -52,7 +52,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: var(--drk-blue);
+    color: var(--primary);
     font-family: 'Lexend-SemiBold';
     position: relative;
     z-index: 1000;
@@ -74,19 +74,12 @@ header .right .theme{
     display: flex;
     align-items: center;
     gap: 5px;
+    color: var(--theme-icon);
 }
 
 header .right .theme:hover{
     cursor: pointer;
     color: #192230;
-}
-
-header .right .theme img{
-    filter: invert(21%) sepia(63%) saturate(333%) hue-rotate(172deg) brightness(94%) contrast(94%);
-}
-
-header .right .theme:hover img{
-    filter: invert(8%) sepia(20%) saturate(1653%) hue-rotate(177deg) brightness(93%) contrast(87%);
 }
 
 header .right .units{
@@ -96,7 +89,7 @@ header .right .units{
 }
 
 header .right .units > *:hover{
-    color: var(--drk-blue);
+    color: var(--primary);
     cursor: pointer;
 }
 
@@ -109,14 +102,14 @@ header .right .units #celcius::after{
     content: "";
     height: 20px;
     width: 1px;
-    background: var(--drk-blue);
+    background: var(--primary);
     top: 50%;
     transform: translateY(-50%);
     right: -13px;
 }
 
 .not-selected{
-    color: #658fc5;
+    color: var(--unit-not-selected);
 }
 
 .hamburger{
@@ -135,7 +128,7 @@ header .right .units #celcius::after{
 .line{
     width: 25px;
     height: 2px;
-    background: var(--drk-blue);
+    background: var(--primary);
     border-radius: 5px;
     transition: all 0.5s ease-in-out;
 }
@@ -146,7 +139,7 @@ header .right .units #celcius::after{
     right: 0;
     width: 25px;
     height: 2px;
-    background: var(--drk-blue);
+    background: var(--primary);
     border-radius: 5px;
     transition: all 0.5s ease-in-out;
 }
@@ -234,7 +227,7 @@ main{
     width: 100%;
     padding: 15px;
     padding-right: 120px;
-    color: var(--drk-blue);
+    color: #2D4059;
     border: none;
     outline: none;
     border-radius: 7px;
@@ -275,7 +268,7 @@ input[type="search"]::-webkit-search-cancel-button{
 }
 
 .search-bar .btn-wrapper .btn{
-    background: var(--drk-blue);
+    background: #2D4059;
     padding: 7px 15px;
     border-radius: 7px;
 }
@@ -346,15 +339,14 @@ input[type="search"]::-webkit-search-cancel-button{
 .weather{
     display: flex;
     width: 100%;
-    gap: 40px;
+    gap: 60px;
 }
 
 .weather .general-info{
     display: flex;
     flex-direction: column;
-    padding: 0 40px 20px;
+    padding: 20px 40px;
     min-width: 400px;
-    height: max-content;
 }
 
 .weather .general-info, .carousel-cell, .graph{
@@ -376,13 +368,12 @@ input[type="search"]::-webkit-search-cancel-button{
     flex-direction: column;
     align-self: flex-start;
     justify-content: space-between;
-    padding: 20px 0 0;
-    color: var(--drk-blue);
+    color: var(--primary);
     font-family: 'Lexend-SemiBold';
 }
 
 .container-top .left .city-date p{
-    color: var(--lgt-blue);
+    color: var(--secondary);
     font-size: clamp(0.875rem, 0.3750rem + 2.8571vw, 1rem);
 }
 
@@ -397,11 +388,10 @@ input[type="search"]::-webkit-search-cancel-button{
 .general-info .container-top img{
     width: 180px;
     object-fit: contain;
-    padding-top: 20px;
 }
 
-.general-info #general-weather, .carousel-cell .text p{
-    color: var(--drk-blue);
+.general-info #general-weather{
+    color: var(--primary);
 }
 
 .general-info #general-weather{
@@ -410,7 +400,7 @@ input[type="search"]::-webkit-search-cancel-button{
 }
 
 .general-info #general-description{
-    color: var(--lgt-blue);
+    color: var(--secondary);
     font-family: 'Lexend-Light';
 }
 
@@ -422,7 +412,7 @@ input[type="search"]::-webkit-search-cancel-button{
     padding: 20px;
     border-radius: 14px;
     margin-top: 20px;
-    color: white;
+    color: var(--otherinfo-text);
     box-shadow: 0px 10px 20px #1e20222a;
 }
 
@@ -446,7 +436,7 @@ input[type="search"]::-webkit-search-cancel-button{
 }
 
 .details-list .detail small{
-    color: rgba(214, 214, 214, 1); 
+    color: var(--tertiary); 
 }
 
 @media screen and (max-width: 1000px){
@@ -558,7 +548,7 @@ input[type="search"]::-webkit-search-cancel-button{
     min-height: 220px;
 }
 
-.forecast .time{
+.other-informations .time{
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -568,24 +558,24 @@ input[type="search"]::-webkit-search-cancel-button{
     background: var(--bg-container);
     border-radius: 16px;
     border: var(--border-container);
-    color: var(--drk-blue);
+    color: var(--primary);
     font-family: 'Lexend-SemiBold';
-    
+    cursor: pointer;
 }
 
-.forecast .time p{
+.other-informations .time p{
     width: 50%;
     padding: 10px 30px;
     z-index: 2;
     text-align: center;
 }
-.forecast .time .selected{
-    color: var(--white);
+.other-informations .time .selected{
+    color: var(--btn-time-text);
     transition: color 0.1s ease-in-out 0.1s;
 }
 
-.forecast .time .selected-div{
-    background: var(--drk-blue);
+.other-informations .time .selected-div{
+    background: var(--btn-time);
     border-radius: 16px;
     position: absolute;
     left: 0;
@@ -606,13 +596,18 @@ input[type="search"]::-webkit-search-cancel-button{
     min-width: 150px;
     min-height: 220px;
     text-align: center;
-    color: var(--drk-blue);
+    color: var(--primary);
     font-family: 'Lexend-SemiBold';
     margin-right: 20px;
 }
 
+.carousel-cell .text p{
+    color: var(--secondary);
+}
+
 .carousel-cell p{
     font-size: 18px;
+    
 }
 
 .carousel-cell .text p{
@@ -654,7 +649,7 @@ input[type="search"]::-webkit-search-cancel-button{
 .graph p{
     font-size: 20px;
     font-family: 'Lexend-SemiBold';
-    color: var(--drk-blue);
+    color: var(--primary);
 }
 
 .graph #chart{
@@ -663,4 +658,16 @@ input[type="search"]::-webkit-search-cancel-button{
 
 .hidden{
     display: none;
+}
+
+.dark{
+    filter: invert(21%) sepia(18%) saturate(1197%) hue-rotate(174deg) brightness(97%) contrast(90%);
+}
+
+.light{
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(52deg) brightness(102%) contrast(102%);
+}
+
+.theme-icon{
+    filter: var(--theme-icon)
 }

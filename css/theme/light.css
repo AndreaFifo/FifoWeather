@@ -1,10 +1,19 @@
 :root{
-    --drk-blue: #2D4059;
-    --lgt-blue: #496994;
+    --primary: #2D4059;
+    --secondary: #496994;
+    --tertiary: rgba(214, 214, 214, 1);
     --white: #F8F8F8;
     --bg-container: rgba(255, 255, 255, 0.226);
     --border-container: 1px solid rgba(255, 255, 255, 0.31);
-    --otherinfo-container: linear-gradient(111.59deg, var(--drk-blue) 3.28%, var(--lgt-blue) 98.14%);
     
-    --bg: linear-gradient(167.95deg, #92C5FE 0%, rgba(179, 226, 255, 0.99) 34.9%, #AEE3FE 70.31%, #E7F0FD 100%);
+    --otherinfo-container: linear-gradient(111.59deg, var(--primary) 3.28%, var(--secondary) 98.14%);
+    --otherinfo-text: #F8F8F8;
+
+    --btn-time: #2D4059;
+    --btn-time-text: #F8F8F8;
+
+    --theme-icon: invert(21%) sepia(18%) saturate(1197%) hue-rotate(174deg) brightness(97%) contrast(90%);
+    --unit-not-selected: #658fc5;
+
+    --bg: linear-gradient(167.95deg, #A5CFFF 0%, rgba(179, 226, 255, 0.99) 100%);;
 }

@@ -13,6 +13,8 @@ let date = new Date();
 let dailyData = {};
 let hourlyData = {};
 
+let graphData = [];
+
 //Function that start the API request, it will fetch all the data and will call other functions to display/calculate other information
 function launchApi(){
     //Geolocalization API
@@ -44,7 +46,7 @@ function launchApi(){
             };
             setGeneralData(generalData);
 
-            let graphData = [
+            graphData = [
                 Math.round(data.daily[0].temp.night),
                 Math.round(data.daily[0].temp.morn),
                 Math.round(data.daily[0].temp.day),
@@ -81,11 +83,11 @@ function setGeneralData(data){
     setImage(document.getElementById('general-weather-img'), data.weather, data.icon, data.descr);
 }
 
-//Function that calculate the hours left to 23 and create forecast containers
-function setSwiperData(data, setting){
+//Function that calculate the hours left to 23 or days of the week and create forecast containers
+function setSwiperData(data, type){
     removeForecast();
 
-    if(setting == 'h'){
+    if(type == 'h'){
         let hour = date.getHours();
         let hoursLeftMidNight = 23 - hour;
 
@@ -93,9 +95,9 @@ function setSwiperData(data, setting){
             addForecast(data[i], hour, 'h');
         }
     }
-    else if(setting == 'd'){
+    else if(type == 'd'){
         let dailyForecastDate = new Date();
-        for(let i = 1; i <= 7; i++){
+        for(let i = 1; i < 7; i++){
             dailyForecastDate.setDate(dailyForecastDate.getDate() + 1);
             addForecast(data[i], dailyForecastDate.getDate() + ' ' + dailyForecastDate.toLocaleString('en-us', { month: 'short' }), 'd');
         }
@@ -190,5 +192,40 @@ function setImage(element, weather, icon, description){
     }
     else if(weather.toLowerCase() == 'thunderstorm' && (!description.includes('rain') && !description.includes('drizzle'))){
         element.setAttribute('src', './assets/img/weather/thunder.png');
+    }
+}
+
+
+
+//Function that modify chart data based on the time setting selected
+function updateChartData(data, type, hDataDaily = {}){
+    const graphP = document.querySelector('.graph p');
+    
+    let temps = [];
+    let days = [];
+    
+
+    if(type == 'd'){
+        let date = new Date();
+        for (let i = 1; i < data.length; i++) {
+            date.setDate(date.getDate() + 1);
+     
+             temps[i - 1] = Math.round((data[i].temp.max + data[i].temp.min) / 2);
+             days[i - 1] = date.toLocaleString('en-us', { weekday: 'short' });
+        }
+        
+        drawChart(temps, 'd', days);
+        graphP.innerText = 'Week temperature';
+    }
+    else if(type == 'h'){
+        temps = [
+            Math.round(hDataDaily.temp.night),
+            Math.round(hDataDaily.temp.morn),
+            Math.round(hDataDaily.temp.day),
+            Math.round(hDataDaily.temp.eve)
+        ];
+    
+        drawChart(temps, 'h');
+        graphP.innerText = 'Day temperature';
     }
 }

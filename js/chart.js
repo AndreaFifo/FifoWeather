@@ -88,10 +88,22 @@ const config = {
 const myChart = new Chart(canvas, config);
 
 //Updating data of chart when a city is searched
-function drawChart(dayTemps){
-    data.datasets[0].data = dayTemps;
-    config.options.scales.y.min = Math.min.apply(Math, dayTemps) - 5;
+function drawChart(temps, type, days = []){
+    data.datasets[0].data = temps;
+    config.options.scales.y.min = Math.min.apply(Math, temps) - 5;
     
+    if(type == 'h'){
+        data.labels = [
+            'Night',
+            'Morning',
+            'Afternoon',
+            'Evening'
+        ];
+    }
+    else if(type == 'd'){
+        data.labels = days;
+    }
+
     myChart.update();
 }
 

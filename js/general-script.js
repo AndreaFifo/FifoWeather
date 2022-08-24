@@ -1,3 +1,15 @@
+/* Setting theme and language during page loading */
+window.addEventListener('load', () => {
+    if(getCookie('theme') == 'dark'){
+        document.getElementById('theme').setAttribute('href', './css/theme/dark.css')
+        document.querySelector('.theme').innerHTML = 'Light <img src="./assets/img/icons/light-theme.svg" alt="light theme" class="theme-icon">';
+    }
+    else{
+        document.getElementById('theme').setAttribute('href', './css/theme/light.css');
+        document.querySelector('.theme').innerHTML = 'Dark <img src="./assets/img/icons/dark-theme.svg" alt="dark theme" class="theme-icon">'
+    }
+})
+
 /* Using of hamburger icon */
 const menuBtn = document.querySelector(".hamburger");
 const rightPart = document.querySelector("header .right");
@@ -19,13 +31,26 @@ menuBtn.addEventListener("click", () => {
 
 /* Changing theme of the page */
 const themeBtn = document.querySelector('.theme');
+const svgIcon = document.querySelectorAll('.svg');
 const theme = document.getElementById('theme');
     
 themeBtn.addEventListener('click', () => {
     theme.setAttribute('href', theme.getAttribute('href') === './css/theme/light.css' ? './css/theme/dark.css' : './css/theme/light.css');
     
-    themeBtn.innerHTML = theme.getAttribute('href') === './css/theme/light.css' ? 'Dark <img src="./assets/img/icons/moon-theme.svg" alt="dark theme">' : 'Light <img src="./assets/img/icons/sun.svg" alt="light theme">';
+    themeBtn.innerHTML = theme.getAttribute('href') === './css/theme/light.css' ? 'Dark <img src="./assets/img/icons/dark-theme.svg" alt="dark theme" class="theme-icon">' : 'Light <img src="./assets/img/icons/light-theme.svg" alt="light theme" class="theme-icon">';
     
+    svgIcon.forEach(e => {
+        if(theme.getAttribute('href') === './css/theme/light.css'){
+            e.classList.remove('dark');
+            e.classList.add('light');
+        } 
+        else{
+            e.classList.remove('light');
+            e.classList.add('dark');
+        }
+    });
+
+    setCookie('theme', theme.getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark', 30);
 });
 
 
@@ -87,14 +112,29 @@ settingsTime.forEach((e, i) => {
         settingsTime[0].classList.remove('selected');
         settingsTime[1].classList.remove('selected');
 
-        if(i == 0){
+        document.querySelector('.selected-div').style.left = i == 0 ? '0' : '50%';
+        setSwiperData(i == 0 ? hourlyData : dailyData, i == 0 ? 'h' : 'd');
+        updateChartData(i == 0 ? hourlyData : dailyData, i == 0 ? 'h' : 'd', i == 0 ? dailyData[0] : '');
+
+        /* 
+            Equivalent
+                |
+                |
+                | 
+                V
+        
+        */
+
+        /*if(i == 0){
             document.querySelector('.selected-div').style.left = '0';
             setSwiperData(hourlyData, 'h');
+            updateChartData(hourlyData, 'h', dailyData[0]);
         }
         else{
             document.querySelector('.selected-div').style.left = '50%';
             setSwiperData(dailyData, 'd');
-        }
+            updateChartData(dailyData, 'd')
+        }*/
 
         animateCarousel();
         e.classList.add('selected');
@@ -112,7 +152,6 @@ const swiper = new Flickity('.carousel', {
     pageDots: false,
     freeScroll: true,
     draggable: '>1',
-    groupCells: false,
 })
 
 function animateCarousel(){
