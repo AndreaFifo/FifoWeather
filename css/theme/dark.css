@@ -1,5 +1,5 @@
 :root{
-    --primary: #E7E7E7;
+    --primary: #f0f0f0;
     --secondary: #445877;
     --tertiary: rgb(34, 52, 75);
     --white: #F8F8F8;
@@ -14,6 +14,8 @@
 
     --theme-icon: invert(100%) sepia(100%) saturate(0%) hue-rotate(52deg) brightness(102%) contrast(102%);
     --unit-not-selected: #445877;
+
+    --nav: #233c5c;
     
     --bg: linear-gradient(127.54deg, #1B2D47 21.73%, #0F1B2D 78.27%);
 }

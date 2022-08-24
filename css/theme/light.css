@@ -15,5 +15,7 @@
     --theme-icon: invert(21%) sepia(18%) saturate(1197%) hue-rotate(174deg) brightness(97%) contrast(90%);
     --unit-not-selected: #658fc5;
 
+    --nav: #e6f2ff;
+
     --bg: linear-gradient(167.95deg, #A5CFFF 0%, rgba(179, 226, 255, 0.99) 100%);;
 }

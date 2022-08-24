@@ -26,6 +26,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 html, body{
@@ -178,12 +185,12 @@ header .right .units #celcius::after{
         left: 50%;
         padding: 40px;
         transform: translateX(80%);
-        background: #e6f2ff;
+        background: var(--nav);
         gap: 20px;
         border-radius: 14px;
         z-index: 9;
         transition: transform 0.5s ease-in-out;
-        box-shadow: 0px 10px 32px #1e202225;
+        box-shadow: 0px 10px 32px #1e20222d;
     }
     
     .hamburger{
@@ -461,7 +468,7 @@ input[type="search"]::-webkit-search-cancel-button{
 
 @media screen and (max-width: 476px){
     .weather .general-info{
-        padding: 0 20px 20px;
+        padding: 20px;
     }
     
     .weather .general-info .container-top{

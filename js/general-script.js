@@ -156,9 +156,9 @@ const swiper = new Flickity('.carousel', {
 
 function animateCarousel(){
     const carousel = document.querySelector('.carousel');
-    carousel.classList.add('animate__animated', 'animate__fadeIn', 'animate__faster');
+    carousel.classList.add('animate__animated', 'animate__fadeIn', 'animate__fast');
     carousel.addEventListener('animationend', () => {
-        carousel.classList.remove('animate__animated', 'animate__fadeIn', 'animate__faster');
+        carousel.classList.remove('animate__animated', 'animate__fadeIn', 'animate__fast');
     })
 }
 
