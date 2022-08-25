@@ -238,7 +238,8 @@ header .right .units #celcius::after{
     header .right{
         position: absolute;
         flex-direction: column;
-        width: 84%;
+        width: 100%;
+        max-width: 554px;
         top: 80px;
         left: 50%;
         padding: 40px;
