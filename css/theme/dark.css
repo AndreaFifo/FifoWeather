@@ -16,6 +16,10 @@
     --unit-not-selected: #445877;
 
     --nav: #233c5c;
+    --nav-lang-bg: #1b314d;
+    --nav-lang-icon: invert(100%) sepia(7%) saturate(6026%) hue-rotate(220deg) brightness(125%) contrast(105%);
+
+    --theme-hover: #27354d;
     
     --bg: linear-gradient(127.54deg, #1B2D47 21.73%, #0F1B2D 78.27%);
 }

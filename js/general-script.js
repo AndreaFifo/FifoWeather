@@ -8,6 +8,14 @@ window.addEventListener('load', () => {
         document.getElementById('theme').setAttribute('href', './css/theme/light.css');
         document.querySelector('.theme').innerHTML = 'Dark <img src="./assets/img/icons/dark-theme.svg" alt="dark theme" class="theme-icon">'
     }
+
+    changeLang(getCookie('lang'));
+    document.querySelectorAll('.lang ul li').forEach(e => {
+        if(e.getAttribute('value') == getCookie('lang')){
+            removeSelection();
+            e.classList.add('selected');
+        }
+    })
 })
 
 /* Using of hamburger icon */
@@ -154,6 +162,7 @@ const swiper = new Flickity('.carousel', {
     draggable: '>1',
 })
 
+/* Adding animation on carousel when it switches between the hourly one and the daily one */
 function animateCarousel(){
     const carousel = document.querySelector('.carousel');
     carousel.classList.add('animate__animated', 'animate__fadeIn', 'animate__fast');
@@ -164,3 +173,150 @@ function animateCarousel(){
 
 
 
+/* Defining several language to allow user change language */
+const language = {
+    en: {
+        lang_: [
+            'English',
+            'Italian',
+            'Spanish',
+        ],
+        placeholder: "Search a city's weather...",
+        search: 'Search',
+        generalData: {
+            day: 'Today, ',
+            otherInfo: {
+                header: 'Other information',
+                details: {
+                    wind: 'Wind',
+                    humidity: 'Humidity',
+                    pressure: 'Pressure'
+                }
+            }
+        },
+        forecast: {
+            hourly: 'Hourly',
+            daily: 'Daily'
+        },
+        chart: {
+            day: 'Day temperature',
+            week: 'Week temperature'
+        }
+    },
+
+    it: {
+        lang_: [
+            'Inglese',
+            'Italiano',
+            'Spagnolo',
+        ],
+        placeholder: "Cerca il meteo di una città...",
+        search: 'Cerca',
+        generalData: {
+            day: 'Oggi, ',
+            otherInfo: {
+                header: 'Altre informazioni',
+                details: {
+                    wind: 'Vento',
+                    humidity: 'Umidità',
+                    pressure: 'Pressione'
+                }
+            }
+        },
+        forecast: {
+            hourly: 'Ogni ora',
+            daily: 'Giornaliero'
+        },
+        chart: {
+            day: 'Temperatura giornaliera',
+            week: 'Temperatura settimanale'
+        }
+    },
+
+    es: {
+        lang_: [
+            'Inglés',
+            'Italiano',
+            'Español',
+        ],
+        placeholder: "Buscar el clima de una ciudad...",
+        search: 'Búsqueda',
+        generalData: {
+            day: 'Este dia, ',
+            otherInfo: {
+                header: 'Otra información',
+                details: {
+                    wind: 'Viento',
+                    humidity: 'Humedad',
+                    pressure: 'Presión'
+                },
+            }
+        },
+        forecast: {
+            hourly: 'Cada hora',
+            daily: 'Diariamente'
+        },
+        chart: {
+            day: 'Temperatura diurna',
+            week: 'Temperatura de la semana'
+        }
+    }
+}
+
+
+
+/* Function that changes language of all the element on the page */
+function changeLang(lang){
+    //Header
+    document.querySelectorAll('.lang ul li p').forEach((e, i) => {
+        e.innerText = language[lang].lang_[i];
+    })
+
+    //Search bar
+    document.getElementById('search').setAttribute('placeholder', language[lang].placeholder);
+    document.querySelector('.search-bar p').innerText = language[lang].search;
+
+    //General data section
+    document.querySelector('.details > p').innerText = language[lang].generalData.otherInfo.header;
+    
+    let details = Object.values(language[lang].generalData.otherInfo.details)
+    document.querySelectorAll('.details-list small').forEach((e, i) => {
+        e.innerText = details[i];
+    })
+
+    //Forecast
+    let times = Object.values(language[lang].forecast)
+    document.querySelectorAll('.other-informations .time p').forEach((e, i) => {
+        e.innerText = times[i];
+    })
+
+    //Graph
+    document.querySelector('.graph p').innerText = language[lang].chart.day;
+}
+
+
+
+/* Function that change the currunte language when it is clicked and call the changeLang function */
+const languages = document.querySelectorAll('.lang ul li');
+languages.forEach(e => {
+    e.addEventListener('click', () => {
+        lang = e.getAttribute('value');
+        changeLang(lang);
+
+        removeSelection();
+        e.classList.add('selected');
+
+        setCookie('lang', lang, 30);
+
+        if(searchBar.value.trim() != "" && searchBar.value.trim() != null)
+            launchApi();
+    })
+})
+
+function removeSelection(){
+    document.querySelectorAll('.lang ul li').forEach(e => {
+        for (let i = 0; i < 3; i++) {
+            e.classList.remove('selected');
+        }
+    });
+}

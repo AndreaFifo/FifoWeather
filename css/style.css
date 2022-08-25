@@ -86,7 +86,65 @@ header .right .theme{
 
 header .right .theme:hover{
     cursor: pointer;
-    color: #192230;
+}
+
+header .right .lang{
+    position: relative;
+    z-index: 10;
+}
+
+header .right .lang-icon{
+    width: 35px;
+    object-fit: contain;
+    filter: var(--nav-lang-icon);
+}
+
+header .right .lang:hover ul,
+header .right ul:hover, ul:focus-within{
+    height: 140px;
+    border: var(--border-container);
+}
+
+header .right ul{
+    height: 0;
+    overflow: hidden;
+    list-style: none;
+    position: absolute;
+    left: 50%;
+    padding: 0 20px;
+    transform: translateX(-50%);
+    background: var(--nav);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: height 0.5s ease-in-out;
+}
+
+header .right ul li{
+    width: max-content;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--secondary);
+}
+
+header .right ul li:nth-child(1){
+    padding-top: 10px;
+}
+
+header .right ul li:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+header .right ul li.selected{
+    color: var(--primary);
+}
+
+header .right ul li img{
+    width: 35px;
+    object-fit: contain;
 }
 
 header .right .units{
@@ -172,7 +230,7 @@ header .right .units #celcius::after{
     transform: rotate(45deg) translate(-10px, 10px);
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 800px) {
     .show-right{
         transform: translateX(-50%) !important;
     }
@@ -192,6 +250,19 @@ header .right .units #celcius::after{
         transition: transform 0.5s ease-in-out;
         box-shadow: 0px 10px 32px #1e20222d;
     }
+
+    header .right .lang{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    header .right ul{
+        position: relative;
+        background: var(--nav-lang-bg);
+    }
+    
     
     .hamburger{
         display: flex;

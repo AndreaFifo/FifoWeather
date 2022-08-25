@@ -6,6 +6,7 @@ let unit = 'metric';
 let unitLetter = '°C';
 let unitMesure = 'km/h';
 let city = '';
+let lang = 'es';
 
 //Declaring date to calculate forecastes and other things related to time
 let date = new Date();
@@ -24,14 +25,14 @@ function launchApi(){
         })
         .then((data) => {
             //Weather API
-            return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data[0].lat}&lon=${data[0].lon}&units=${unit}&appid=${apiKey}`, {cache: 'no-cache'});
+            return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data[0].lat}&lon=${data[0].lon}&units=${unit}&lang=${lang}&appid=${apiKey}`, {cache: 'no-cache'});
         })
         .then((response) => {
             return response.json();
         })
         .then((data) => {
             console.log(data)
-            document.getElementById('date').innerText = 'Today, ' + date.getDate() + ' ' + date.toLocaleString('en-us', { month: 'short' });
+            document.getElementById('date').innerText = language[lang].generalData.day + date.getDate() + ' ' + date.toLocaleString('en-us', { month: 'short' });
 
             //Creating object to make easier the selection of data on function.
             let generalData = {
@@ -215,7 +216,7 @@ function updateChartData(data, type, hDataDaily = {}){
         }
         
         drawChart(temps, 'd', days);
-        graphP.innerText = 'Week temperature';
+        graphP.innerText = language[lang].chart.week;
     }
     else if(type == 'h'){
         temps = [
@@ -226,6 +227,6 @@ function updateChartData(data, type, hDataDaily = {}){
         ];
     
         drawChart(temps, 'h');
-        graphP.innerText = 'Day temperature';
+        graphP.innerText = language[lang].chart.day;
     }
 }

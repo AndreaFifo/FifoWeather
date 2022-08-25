@@ -20,7 +20,8 @@ function getCookie(cname) {
     return false;
 }
 
-if(!getCookie('theme') && !getCookie('lang')){
+if(!getCookie('theme'))
     setCookie('theme', 'light', 30);
-    setCookie('lang', 'en-us', 30);
-}
+
+if(!getCookie('lang'))
+    setCookie('lang', 'en', 30);

@@ -16,6 +16,10 @@
     --unit-not-selected: #658fc5;
 
     --nav: #e6f2ff;
+    --nav-lang-bg: #d3e8ff;
+    --nav-lang-icon: invert(22%) sepia(12%) saturate(1929%) hue-rotate(175deg) brightness(91%) contrast(88%);
 
-    --bg: linear-gradient(167.95deg, #A5CFFF 0%, rgba(179, 226, 255, 0.99) 100%);;
+    --theme-hover: var(--primary);
+
+    --bg: linear-gradient(167.95deg, #A5CFFF 0%, rgba(179, 226, 255, 0.99) 100%);
 }
