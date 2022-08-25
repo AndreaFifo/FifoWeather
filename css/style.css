@@ -242,7 +242,7 @@ header .right .units #celcius::after{
         max-width: 554px;
         top: 80px;
         left: 50%;
-        padding: 40px;
+        padding: 30px;
         transform: translateX(80%);
         background: var(--nav);
         gap: 20px;
