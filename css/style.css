@@ -347,7 +347,7 @@ input[type="search"]::-webkit-search-cancel-button{
 }
 
 .search-bar .btn-wrapper .btn{
-    background: #2D4059;
+    background: var(--btn-search);
     padding: 7px 15px;
     border-radius: 7px;
 }

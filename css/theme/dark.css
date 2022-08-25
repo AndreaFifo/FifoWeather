@@ -9,6 +9,8 @@
     --otherinfo-container: linear-gradient(111.59deg, #CDCDCD 3.28%, #FFFFFF 98.14%);;
     --otherinfo-text: #2D4059;
 
+    --btn-search: var(--nav);
+
     --btn-time: #E7E7E7;
     --btn-time-text: #2D4059;
 
