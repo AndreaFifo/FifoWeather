@@ -9,7 +9,7 @@ let city = '';
 let lang = '';
 
 //Declaring date to calculate forecastes and other things related to time
-let date = new Date();
+let date;
 
 let dailyData = {};
 let hourlyData = {};
@@ -31,6 +31,9 @@ function launchApi(){
             return response.json();
         })
         .then((data) => {
+            //Initialize date based on timezone of the city requested
+            date = changeTimeZone(new Date(), data.timezone);
+        
             document.getElementById('date').innerText = language[lang].generalData.day + date.getDate() + ' ' + date.toLocaleString('en-us', { month: 'short' });
 
             //Creating object to make easier the selection of data on function.
@@ -230,4 +233,10 @@ function updateChartData(data, type, hDataDaily = {}){
         drawChart(temps, 'h');
         graphP.innerText = language[lang].chart.day;
     }
+}
+
+function changeTimeZone(date, timezone){
+    return new Date(
+        new Date(date).toLocaleString('en-US', { timeZone: timezone})
+    );
 }
