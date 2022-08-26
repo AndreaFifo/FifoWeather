@@ -265,6 +265,10 @@ header .right .units #celcius::after{
     }
 
     header .right ul{
+        top: initial;
+    }
+
+    header .right ul{
         position: relative;
         background: var(--nav-lang-bg);
     }
