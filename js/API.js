@@ -6,7 +6,7 @@ let unit = 'metric';
 let unitLetter = '°C';
 let unitMesure = 'km/h';
 let city = '';
-let lang = 'es';
+let lang = '';
 
 //Declaring date to calculate forecastes and other things related to time
 let date = new Date();
@@ -31,7 +31,6 @@ function launchApi(){
             return response.json();
         })
         .then((data) => {
-            console.log(data)
             document.getElementById('date').innerText = language[lang].generalData.day + date.getDate() + ' ' + date.toLocaleString('en-us', { month: 'short' });
 
             //Creating object to make easier the selection of data on function.
@@ -65,6 +64,8 @@ function launchApi(){
             setInterval(() => {
                 swiper.resize();
             }, 1);
+
+            animateEverything();
         })
         .catch((err) => {
             console.log(err);
@@ -212,7 +213,7 @@ function updateChartData(data, type, hDataDaily = {}){
             date.setDate(date.getDate() + 1);
      
              temps[i - 1] = Math.round((data[i].temp.max + data[i].temp.min) / 2);
-             days[i - 1] = date.toLocaleString('en-us', { weekday: 'short' });
+             days[i - 1] = date.toLocaleString(lang, { weekday: 'short' });
         }
         
         drawChart(temps, 'd', days);

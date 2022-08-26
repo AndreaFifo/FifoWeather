@@ -99,6 +99,10 @@ header .right .lang-icon{
     filter: var(--nav-lang-icon);
 }
 
+header .right .lang-icon:hover{
+    cursor: pointer;
+}
+
 header .right .lang:hover ul,
 header .right ul:hover, ul:focus-within{
     height: 140px;
@@ -110,9 +114,10 @@ header .right ul{
     overflow: hidden;
     list-style: none;
     position: absolute;
+    top: 50px;
     left: 50%;
     padding: 0 20px;
-    transform: translateX(-50%);
+    transform: translate(-50%);
     background: var(--nav);
     border-radius: 14px;
     display: flex;

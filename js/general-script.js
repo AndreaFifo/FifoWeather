@@ -8,7 +8,10 @@ window.addEventListener('load', () => {
         document.getElementById('theme').setAttribute('href', './css/theme/light.css');
         document.querySelector('.theme').innerHTML = 'Dark <img src="./assets/img/icons/dark-theme.svg" alt="dark theme" class="theme-icon">'
     }
+    svgIconColor();
+    changeChartTheme(document.getElementById('theme').getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark');
 
+    lang = getCookie('lang');
     changeLang(getCookie('lang'));
     document.querySelectorAll('.lang ul li').forEach(e => {
         if(e.getAttribute('value') == getCookie('lang')){
@@ -39,7 +42,6 @@ menuBtn.addEventListener("click", () => {
 
 /* Changing theme of the page */
 const themeBtn = document.querySelector('.theme');
-const svgIcon = document.querySelectorAll('.svg');
 const theme = document.getElementById('theme');
     
 themeBtn.addEventListener('click', () => {
@@ -47,6 +49,15 @@ themeBtn.addEventListener('click', () => {
     
     themeBtn.innerHTML = theme.getAttribute('href') === './css/theme/light.css' ? 'Dark <img src="./assets/img/icons/dark-theme.svg" alt="dark theme" class="theme-icon">' : 'Light <img src="./assets/img/icons/light-theme.svg" alt="light theme" class="theme-icon">';
     
+    svgIconColor();
+    changeChartTheme(theme.getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark');
+
+    setCookie('theme', theme.getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark', 30);
+});
+
+
+function svgIconColor(){
+    const svgIcon = document.querySelectorAll('.svg');
     svgIcon.forEach(e => {
         if(theme.getAttribute('href') === './css/theme/light.css'){
             e.classList.remove('dark');
@@ -57,10 +68,7 @@ themeBtn.addEventListener('click', () => {
             e.classList.add('dark');
         }
     });
-
-    setCookie('theme', theme.getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark', 30);
-});
-
+}
 
 
 /* Choosing unit of data */
@@ -108,10 +116,9 @@ searchBtn.addEventListener('click', () => {
     if(searchBar.value.trim() != "" && searchBar.value.trim() != null){
         city = searchBar.value.trim();
         launchApi();
+        resetSettingsTime();
     }
 });
-
-
 
 /* Selecting forecast visualization when user click on 'Hourly' or 'Daily' */
 const settingsTime = document.querySelectorAll('.time p');
@@ -149,7 +156,15 @@ settingsTime.forEach((e, i) => {
     })
 })
 
-
+function resetSettingsTime(){
+    if(settingsTime[0].classList.contains('selected'))
+        return;
+    
+    settingsTime[1].classList.remove('selected');
+    settingsTime[0].classList.add('selected');
+    document.querySelector('.selected-div').style.left = '0';
+    updateChartData(hourlyData, 'h', dailyData[0]);
+}
 
 /* Declaration of swiper element */
 const swiper = new Flickity('.carousel', {
@@ -171,7 +186,32 @@ function animateCarousel(){
     })
 }
 
+function animateEverything(){
+    const generalInfo = document.querySelector('.general-info');
+    const time = document.querySelector('.time');
+    const forecast = document.querySelector('.forecast');
+    const graph = document.querySelector('.graph');
 
+    generalInfo.classList.add('animate__animated', 'animate__fadeInLeft');
+    generalInfo.addEventListener('animationend', () => {
+        generalInfo.classList.remove('animate__animated', 'animate__fadeInLeft');
+    })
+
+    forecast.classList.add('animate__animated', 'animate__fadeInDown');
+    forecast.addEventListener('animationend', () => {
+        forecast.classList.remove('animate__animated', 'animate__fadeInDown');
+    })
+
+    time.classList.add('animate__animated', 'animate__fadeIn', 'animate__delay-1s');
+    time.addEventListener('animationend', () => {
+        time.classList.remove('animate__animated', 'animate__fadeIn', 'animate__delay-1s');
+    })
+
+    graph.classList.add('animate__animated', 'animate__fadeInUp');
+    graph.addEventListener('animationend', () => {
+        graph.classList.remove('animate__animated', 'animate__fadeInUp');
+    })
+}
 
 /* Defining several language to allow user change language */
 const language = {
@@ -292,6 +332,7 @@ function changeLang(lang){
 
     //Graph
     document.querySelector('.graph p').innerText = language[lang].chart.day;
+    data.labels = labels[lang];
 }
 
 
