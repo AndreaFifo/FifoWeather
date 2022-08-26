@@ -235,6 +235,7 @@ function updateChartData(data, type, hDataDaily = {}){
     }
 }
 
+//Function that changes the timezone of the date
 function changeTimeZone(date, timezone){
     return new Date(
         new Date(date).toLocaleString('en-US', { timeZone: timezone})
