@@ -10,29 +10,71 @@ gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
 //Defining labels for every point of the chart
 const labels = {
-    en: [
-        'Night',
-        'Morning',
-        'Afternoon',
-        'Evening'
-    ],
-    it: [
-        'Notte',
-        'Mattina',
-        'Pomeriggio',
-        'Sera'
-    ],
-    es: [
-        'Noche',
-        'Mañana',
-        'Tarde',
-        'Tardecita'
-    ],
+    en: {
+        long: [
+            'Night',
+            'Morning',
+            'Afternoon',
+            'Evening'
+        ],
+        med: [
+            'Nty',
+            'Morn',
+            'Aftr',
+            'Eve'
+        ],
+        short: [
+            'N',
+            'M',
+            'A',
+            'E'
+        ],
+    },
+    it: { 
+        long: [
+            'Notte',
+            'Mattina',
+            'Pomeriggio',
+            'Sera'
+        ],
+        med: [
+            'Nte',
+            'Mtn',
+            'Pom',
+            'Sera'
+        ],
+        short: [
+            'N',
+            'M',
+            'P',
+            'S'
+        ]
+    },
+    es: {
+        long: [
+            'Noche',
+            'Mañana',
+            'Tarde',
+            'Tardecita'
+        ],
+        med: [
+            'Nce',
+            'Mañ',
+            'Tarde',
+            'Trcita'
+        ],
+        short: [
+            'N',
+            'M',
+            'T',
+            'Tc'
+        ]
+    }
 }
 
 //Defining data of chart; initialized with 0-0-0-0 
 let data = {
-    labels: labels[lang],
+    labels: labels.en.long,
     datasets: [{
         data: [0, 0, 0, 0],
         fill: true,
@@ -102,12 +144,12 @@ let config = {
 const myChart = new Chart(canvas, config);
 
 //Updating data of chart when a city is searched
-function drawChart(temps, type, days = []){
+function drawChart(temps, type = 'h', days = []){
     data.datasets[0].data = temps;
     config.options.scales.y.min = Math.min.apply(Math, temps) - 10;
     
     if(type == 'h'){
-        data.labels = labels[lang];
+        data.labels = labels[lang][responsiveLabels()];
     }
     else if(type == 'd'){
         data.labels = days;
@@ -142,17 +184,12 @@ function changeChartTheme(theme){
     myChart.update();
 }
 
-//If the view port width is too small(in this case less or equal to 362px) the labels of the chart will be changed with some abbrevations of them.
-if(window.innerWidth <= 362){
-    const newLabels = [
-        'Nty',
-        'Morn',
-        'Aftn',
-        'Eve'
-    ];
 
-    data.labels = newLabels;
-
-    myChart.update();
+function responsiveLabels(){
+    if(window.innerWidth > 450)
+        return 'long';
+    if(window.innerWidth >= 350 && window.innerWidth <= 450)
+        return 'med';
+    if(window.innerWidth <= 350)
+        return 'short';
 }
-

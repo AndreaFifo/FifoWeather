@@ -268,8 +268,8 @@ const language = {
             daily: 'Giornaliero'
         },
         chart: {
-            day: 'Temperatura giornaliera',
-            week: 'Temperatura settimanale'
+            day: 'Temperatura giorn.',
+            week: 'Temperatura sett.'
         }
     },
 

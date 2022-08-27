@@ -230,7 +230,7 @@ function updateChartData(data, type, hDataDaily = {}){
             Math.round(hDataDaily.temp.eve)
         ];
     
-        drawChart(temps, 'h');
+        drawChart(temps);
         graphP.innerText = language[lang].chart.day;
     }
 }
