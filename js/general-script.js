@@ -349,7 +349,7 @@ languages.forEach(e => {
 
         setCookie('lang', lang, 30);
 
-        if(searchBar.value.trim() != "" && searchBar.value.trim() != null)
+        if(!(searchBar.value.trim() != "" && searchBar.value.trim() != null) || !(lat != 0 && long != 0))
             launchApi();
     })
 })

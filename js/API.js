@@ -1,5 +1,6 @@
 //Key of openweather API
 const apiKey = 'ff24c4014e5de01237371f8e9f162185';
+const ipGeocalizationKey = '77aa98107a2640f6bfc5e467f59fef9c';
 
 //Declaring variables that will be used in API request
 let unit = 'metric';
@@ -7,6 +8,9 @@ let unitLetter = '°C';
 let unitMesure = 'km/h';
 let city = '';
 let lang = '';
+
+let lat = .0;
+let long = .0;
 
 //Declaring date to calculate forecastes and other things related to time
 let date;
@@ -16,16 +20,59 @@ let hourlyData = {};
 
 let graphData = [];
 
+//Object that contain weather condition(Rain, Clear ecc.) in the other languages
+const weatherTranslate = {
+    en: {
+        Rain: 'Rain',
+        Thunderstorm: 'Thunderstorme',
+        Drizzle: 'Drizzle',
+        Snow: 'Snow',
+        Clear: 'Clear',
+        Clouds: 'Clouds'
+    },
+    it: {
+        Rain: 'Pioggia',
+        Thunderstorm: 'Temporale',
+        Drizzle: 'Pioggerella',
+        Snow: 'Neve',
+        Clear: 'Sereno',
+        Clouds: 'Nuvoloso'
+    },
+    es: {
+        Rain: 'Lluvia',
+        Thunderstorm: 'Tormenta',
+        Drizzle: 'Llovizna',
+        Snow: 'Nieve',
+        Clear: 'Claro',
+        Clouds: 'Nubes'
+    }
+}
+
 //Function that start the API request, it will fetch all the data and will call other functions to display/calculate other information
-function launchApi(){
+function launchApi(first = false){
+    let promise;
+    if(first)
+        promise = fetch(`https://ipgeolocation.abstractapi.com/v1/?api_key=${ipGeocalizationKey}`, {cache: 'no-cache'});
+    else
+        promise = fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`, {cache: 'no-cache'})
+
     //Geolocalization API
-    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`, {cache: 'no-cache'})
+    promise
         .then((response) => {
             return response.json();
         })
         .then((data) => {
             //Weather API
-            return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data[0].lat}&lon=${data[0].lon}&units=${unit}&lang=${lang}&appid=${apiKey}`, {cache: 'no-cache'});
+            if(first){
+                city = data.city;
+                lat = data.latitude;
+                long = data.longitude;
+            }
+            else{
+                lat = data[0].lat;
+                long = data[0].lon;
+            }
+            return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=${unit}&lang=${lang}&appid=${apiKey}`, {cache: 'no-cache'});
         })
         .then((response) => {
             return response.json();
@@ -79,7 +126,7 @@ function launchApi(){
 function setGeneralData(data){
     document.getElementById('city').innerText = data.city;
     document.getElementById('temperature').innerText = data.temp + unitLetter;
-    document.getElementById('general-weather').innerText = data.weather;
+    document.getElementById('general-weather').innerText = weatherTranslate[lang][data.weather];
     document.getElementById('general-description').innerText = data.descr;
     document.getElementById('wind').innerText = data.wind + ' ' + unitMesure;
     document.getElementById('humidity').innerText = data.humidity + '%';
@@ -120,7 +167,7 @@ function addForecast(forecast, info, type){
 
     const img = document.createElement('img');
     img.setAttribute('alt', 'weather icon');
-    setImage(img, forecast.weather[0].main, forecast.weather[0].icon, forecast.weather[0].description);
+    setImage(img, weatherTranslate[lang][forecast.weather[0].main], forecast.weather[0].icon, forecast.weather[0].description);
 
     const textDiv = document.createElement('div');
     textDiv.classList.add('text');
@@ -128,7 +175,7 @@ function addForecast(forecast, info, type){
     const degree = document.createElement('h2');
 
     const weather = document.createElement('p');
-    weather.innerText = forecast.weather[0].main;
+    weather.innerText = weatherTranslate[lang][forecast.weather[0].main];
 
     if(type == 'h'){
         information.innerText = info  + ':00';
@@ -160,13 +207,13 @@ function removeForecast(){
 
 //Function that, depending on the weather(in particular on the icon and description), set the source for the images to display the correct weather icon
 function setImage(element, weather, icon, description){
-    if(weather.toLowerCase() == 'clear'){
+    if(weather.toLowerCase() == 'clear' || weather.toLowerCase() == 'sereno' || weather.toLowerCase() == 'claro'){
         if(icon == '01d')
             element.setAttribute('src', './assets/img/weather/clear-sun.png');
         else
             element.setAttribute('src', './assets/img/weather/moon.png');
     }
-    else if(weather.toLowerCase() == 'clouds'){
+    else if(weather.toLowerCase() == 'clouds' || weather.toLowerCase() == 'nuvoloso' || weather.toLowerCase() == 'nubes'){
         if(description == 'few clouds'){
             if(icon == '02d')
                 element.setAttribute('src', './assets/img/weather/sun-lil-cloudy.png');
@@ -182,7 +229,7 @@ function setImage(element, weather, icon, description){
         else
             element.setAttribute('src', './assets/img/weather/broken-cloudy.png');    
     }
-    else if(weather.toLowerCase() == 'rain' || weather.toLowerCase() == 'drizzle'){
+    else if((weather.toLowerCase() == 'rain' || weather.toLowerCase() == 'pioggia' || weather.toLowerCase() == 'lluvia') || (weather.toLowerCase() == 'drizzle' || weather.toLowerCase() == 'pioggerella' || weather.toLowerCase() == 'llovizna')){
         if(description == 'shower rain' || description.includes('drizzle'))
             element.setAttribute('src', './assets/img/weather/rain.png');
         else{
@@ -192,10 +239,10 @@ function setImage(element, weather, icon, description){
                 element.setAttribute('src', './assets/img/weather/night-rain.png');
         }
     }
-    else if(weather.toLowerCase() == 'thunderstorm' && (description.includes('rain') || description.includes('drizzle'))){
+    else if((weather.toLowerCase() == 'thunderstorm' || weather.toLowerCase() == 'temporale' || weather.toLowerCase() == 'tormenta') && (description.includes('rain') || description.includes('drizzle'))){
         element.setAttribute('src', './assets/img/weather/heavyrain-storm.png');
     }
-    else if(weather.toLowerCase() == 'thunderstorm' && (!description.includes('rain') && !description.includes('drizzle'))){
+    else if((weather.toLowerCase() == 'thunderstorm' || weather.toLowerCase() == 'temporale' || weather.toLowerCase() == 'tormenta') && (!description.includes('rain') && !description.includes('drizzle'))){
         element.setAttribute('src', './assets/img/weather/thunder.png');
     }
 }
