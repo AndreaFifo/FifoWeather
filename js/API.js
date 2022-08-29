@@ -50,13 +50,13 @@ const weatherTranslate = {
 
 //Function that start the API request, it will fetch all the data and will call other functions to display/calculate other information
 function launchApi(first = false){
+    //Geolocalization API
     let promise;
     if(first)
         promise = fetch(`https://ipgeolocation.abstractapi.com/v1/?api_key=${ipGeocalizationKey}`, {cache: 'no-cache'});
     else
         promise = fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`, {cache: 'no-cache'})
 
-    //Geolocalization API
     promise
         .then((response) => {
             return response.json();
@@ -263,7 +263,7 @@ function updateChartData(data, type, hDataDaily = {}){
             date.setDate(date.getDate() + 1);
      
              temps[i - 1] = Math.round((data[i].temp.max + data[i].temp.min) / 2);
-             days[i - 1] = date.toLocaleString(lang, { weekday: 'short' });
+             days[i - 1] = date.toLocaleString(lang, { weekday: window.innerWidth <= 350 ? 'narrow' : 'short' });
         }
         
         drawChart(temps, 'd', days);
