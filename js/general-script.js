@@ -115,6 +115,11 @@ const searchBtn = document.getElementById('search-btn');
 searchBtn.addEventListener('click', () => {
     if(searchBar.value.trim() != "" && searchBar.value.trim() != null){
         city = searchBar.value.trim();
+
+        //Removing error container if it is displayed
+        if(document.querySelector('.error'))
+        document.querySelector('.error').remove();
+        
         launchApi();
         resetSettingsTime();
     }

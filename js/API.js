@@ -62,6 +62,11 @@ function launchApi(first = false){
             return response.json();
         })
         .then((data) => {
+            if(data.length == 0){
+                error();
+                throw 'City not found!';
+            }
+
             //Weather API
             if(first){
                 city = data.city;
@@ -287,4 +292,19 @@ function changeTimeZone(date, timezone){
     return new Date(
         new Date(date).toLocaleString('en-US', { timeZone: timezone})
     );
+}
+
+//Function that creates and displays an error container
+function error(){
+    document.querySelector('.weather').classList.add('hidden');
+
+    const div = document.createElement('div');
+    div.classList.add('error');
+
+    const errorMessage = document.createElement('p');
+    errorMessage.innerText = "We're sorry about that, but the city searched by you hasn't been found.";
+
+    div.appendChild(errorMessage);
+    div.classList.add('animate__animated', 'animate__fadeInDown', 'animate__fast');
+    document.querySelector('main').appendChild(div);
 }
