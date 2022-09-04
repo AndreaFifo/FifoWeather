@@ -2,12 +2,13 @@
 window.addEventListener('load', () => {
     if(getCookie('theme') == 'dark'){
         document.getElementById('theme').setAttribute('href', './css/theme/dark.css')
-        document.querySelector('.theme').innerHTML = 'Light <img src="./assets/img/icons/light-theme.svg" alt="light theme" class="theme-icon">';
+        changeBtnTheme(document.querySelector('.img #lgt-theme-icon').parentElement);
     }
     else{
         document.getElementById('theme').setAttribute('href', './css/theme/light.css');
-        document.querySelector('.theme').innerHTML = 'Dark <img src="./assets/img/icons/dark-theme.svg" alt="dark theme" class="theme-icon">'
+        changeBtnTheme(document.querySelector('.img #drk-theme-icon').parentElement);
     }
+
     svgIconColor();
     changeChartTheme(document.getElementById('theme').getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark');
 
@@ -15,7 +16,7 @@ window.addEventListener('load', () => {
     changeLang(getCookie('lang'));
     document.querySelectorAll('.lang ul li').forEach(e => {
         if(e.getAttribute('value') == getCookie('lang')){
-            removeSelection();
+            removeSelection(document.querySelectorAll('.lang ul li'));
             e.classList.add('selected');
         }
     })
@@ -41,19 +42,32 @@ menuBtn.addEventListener("click", () => {
 
 
 /* Changing theme of the page */
-const themeBtn = document.querySelector('.theme');
+const themeBtns = document.querySelectorAll('.img');
 const theme = document.getElementById('theme');
+const selectedDivTheme = document.querySelector('.theme .selected-div');
     
-themeBtn.addEventListener('click', () => {
-    theme.setAttribute('href', theme.getAttribute('href') === './css/theme/light.css' ? './css/theme/dark.css' : './css/theme/light.css');
-    
-    themeBtn.innerHTML = theme.getAttribute('href') === './css/theme/light.css' ? 'Dark <img src="./assets/img/icons/dark-theme.svg" alt="dark theme" class="theme-icon">' : 'Light <img src="./assets/img/icons/light-theme.svg" alt="light theme" class="theme-icon">';
-    
-    svgIconColor();
-    changeChartTheme(theme.getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark');
+themeBtns.forEach(e => {
+    e.addEventListener('click', () => {
+        theme.setAttribute('href', theme.getAttribute('href') === './css/theme/light.css' ? './css/theme/dark.css' : './css/theme/light.css');
+        
+        changeBtnTheme(e)
 
-    setCookie('theme', theme.getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark', 30);
-});
+        changeChartTheme(theme.getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark');
+    
+        setCookie('theme', theme.getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark', 30);
+    });
+})
+
+function changeBtnTheme(e){
+    selectedDivTheme.style.left = theme.getAttribute('href') === './css/theme/light.css' ? '0' : '50%';
+        
+    removeSelection(themeBtns);
+    e.classList.add('selected');
+
+    themeBtns[0].classList.remove('dark');
+    themeBtns[1].classList.remove('light');
+    theme.getAttribute('href') === './css/theme/light.css' ? e.classList.add('light') : e.classList.add('dark');
+}
 
 
 function svgIconColor(){
@@ -69,7 +83,6 @@ function svgIconColor(){
         }
     });
 }
-
 
 /* Choosing unit of data */
 const units = [document.getElementById('celcius'), document.getElementById('fahrenheit')];
@@ -132,7 +145,7 @@ settingsTime.forEach((e, i) => {
         settingsTime[0].classList.remove('selected');
         settingsTime[1].classList.remove('selected');
 
-        document.querySelector('.selected-div').style.left = i == 0 ? '0' : '50%';
+        document.querySelector('.time .selected-div').style.left = i == 0 ? '0' : '50%';
         setSwiperData(i == 0 ? hourlyData : dailyData, i == 0 ? 'h' : 'd');
         updateChartData(i == 0 ? hourlyData : dailyData, i == 0 ? 'h' : 'd', i == 0 ? dailyData[0] : '');
 
@@ -349,7 +362,7 @@ languages.forEach(e => {
         lang = e.getAttribute('value');
         changeLang(lang);
 
-        removeSelection();
+        removeSelection(document.querySelectorAll('.lang ul li'));
         e.classList.add('selected');
 
         setCookie('lang', lang, 30);
@@ -359,8 +372,8 @@ languages.forEach(e => {
     })
 })
 
-function removeSelection(){
-    document.querySelectorAll('.lang ul li').forEach(e => {
+function removeSelection(el){
+    el.forEach(e => {
         for (let i = 0; i < 3; i++) {
             e.classList.remove('selected');
         }

@@ -77,11 +77,38 @@ header .right{
 }
 
 header .right .theme{
+    position: relative;
     font-size: 24px;
+    min-width: 95px;
     display: flex;
     align-items: center;
-    gap: 5px;
-    color: var(--theme-icon);
+    justify-content: space-between;
+    background: var(--bg-container);
+    border-radius: 16px;
+    border: var(--border-container);
+    color: var(--primary);
+    padding: 6px 0;
+}
+
+header .right .theme .img{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+
+    filter: var(--theme-icon);
+
+    transition: all 0.2s ease-in-out, 
+}
+
+header .right .theme .img:not(.selected):hover{
+    transform: scale(1.08);
+}
+
+header .right .theme .selected-div{
+    height: 100% !important;
+    padding: 0 !important;
 }
 
 header .right .theme:hover{
@@ -250,11 +277,15 @@ header .right .units #celcius::after{
         padding: 30px;
         transform: translateX(80%);
         background: var(--nav);
-        gap: 20px;
+        gap: 30px;
         border-radius: 14px;
         z-index: 9;
         transition: transform 0.5s ease-in-out;
         box-shadow: 0px 10px 32px #1e20222d;
+    }
+
+    header .right .theme{
+        background: var(--nav-lang-bg);
     }
 
     header .right .lang{
@@ -662,7 +693,7 @@ input[type="search"]::-webkit-search-cancel-button{
     transition: color 0.1s ease-in-out 0.1s;
 }
 
-.other-informations .time .selected-div{
+.other-informations .time .selected-div, header .right .theme .selected-div{
     background: var(--btn-time);
     border-radius: 16px;
     position: absolute;
@@ -749,15 +780,11 @@ input[type="search"]::-webkit-search-cancel-button{
 }
 
 .dark{
-    filter: invert(21%) sepia(18%) saturate(1197%) hue-rotate(174deg) brightness(97%) contrast(90%);
+    filter: invert(21%) sepia(18%) saturate(1197%) hue-rotate(174deg) brightness(97%) contrast(90%) !important;
 }
 
 .light{
-    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(52deg) brightness(102%) contrast(102%);
-}
-
-.theme-icon{
-    filter: var(--theme-icon)
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(52deg) brightness(102%) contrast(102%) !important;
 }
 
 .error{
