@@ -67,6 +67,8 @@ function changeBtnTheme(e){
     themeBtns[0].classList.remove('dark');
     themeBtns[1].classList.remove('light');
     theme.getAttribute('href') === './css/theme/light.css' ? e.classList.add('light') : e.classList.add('dark');
+    
+    svgIconColor();
 }
 
 
@@ -180,7 +182,7 @@ function resetSettingsTime(){
     
     settingsTime[1].classList.remove('selected');
     settingsTime[0].classList.add('selected');
-    document.querySelector('.selected-div').style.left = '0';
+    document.querySelector('.other-informations .time .selected-div').style.left = '0';
     updateChartData(hourlyData, 'h', dailyData[0]);
 }
 
@@ -361,6 +363,8 @@ languages.forEach(e => {
     e.addEventListener('click', () => {
         lang = e.getAttribute('value');
         changeLang(lang);
+
+        resetSettingsTime();
 
         removeSelection(document.querySelectorAll('.lang ul li'));
         e.classList.add('selected');

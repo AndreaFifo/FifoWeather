@@ -156,7 +156,7 @@ function setSwiperData(data, type){
         let dailyForecastDate = new Date();
         for(let i = 1; i < 7; i++){
             dailyForecastDate.setDate(dailyForecastDate.getDate() + 1);
-            addForecast(data[i], dailyForecastDate.getDate() + ' ' + dailyForecastDate.toLocaleString('en-us', { month: 'short' }), 'd');
+            addForecast(data[i], dailyForecastDate.getDate() + ' ' + dailyForecastDate.toLocaleString(lang, { weekday: 'short' }), 'd');
         }
     }
 
