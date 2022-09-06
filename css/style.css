@@ -555,7 +555,7 @@ input[type="search"]::-webkit-search-cancel-button{
 }
 
 .details-list .detail small{
-    color: var(--tertiary); 
+    color: rgb(187, 187, 187); 
 }
 
 @media screen and (max-width: 1000px){
@@ -585,6 +585,7 @@ input[type="search"]::-webkit-search-cancel-button{
     
     .weather .general-info .container-top{
         flex-direction: column;
+        gap: 20px;
         height: auto;
     }
 
@@ -722,19 +723,29 @@ input[type="search"]::-webkit-search-cancel-button{
 
 .carousel-cell .text p{
     color: var(--secondary);
+    font-size: 22px;
 }
 
-.carousel-cell p{
+.carousel-cell > p{
     font-size: 18px;
     
 }
 
-.carousel-cell .text p{
-    font-size: 22px;
-}
-
 .carousel-cell img{
     width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+@media screen and (max-width: 600px){
+    .carousel-cell{
+        padding: 20px 10px;
+        min-height: initial;
+    }
+    
+    .carousel-cell .text p{
+        display: none;
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -779,12 +790,12 @@ input[type="search"]::-webkit-search-cancel-button{
     display: none;
 }
 
-.dark{
-    filter: invert(21%) sepia(18%) saturate(1197%) hue-rotate(174deg) brightness(97%) contrast(90%) !important;
-}
-
 .light{
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(52deg) brightness(102%) contrast(102%) !important;
+}
+
+.dark{
+    filter: invert(21%) sepia(18%) saturate(1197%) hue-rotate(174deg) brightness(97%) contrast(90%) !important;
 }
 
 .error{

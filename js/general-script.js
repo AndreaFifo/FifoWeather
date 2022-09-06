@@ -9,7 +9,6 @@ window.addEventListener('load', () => {
         changeBtnTheme(document.querySelector('.img #drk-theme-icon').parentElement);
     }
 
-    svgIconColor();
     changeChartTheme(document.getElementById('theme').getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark');
 
     lang = getCookie('lang');
@@ -67,23 +66,6 @@ function changeBtnTheme(e){
     themeBtns[0].classList.remove('dark');
     themeBtns[1].classList.remove('light');
     theme.getAttribute('href') === './css/theme/light.css' ? e.classList.add('light') : e.classList.add('dark');
-    
-    svgIconColor();
-}
-
-
-function svgIconColor(){
-    const svgIcon = document.querySelectorAll('.svg');
-    svgIcon.forEach(e => {
-        if(theme.getAttribute('href') === './css/theme/light.css'){
-            e.classList.remove('dark');
-            e.classList.add('light');
-        } 
-        else{
-            e.classList.remove('light');
-            e.classList.add('dark');
-        }
-    });
 }
 
 /* Choosing unit of data */
