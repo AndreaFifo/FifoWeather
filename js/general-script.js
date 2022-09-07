@@ -85,6 +85,8 @@ units.forEach((e, i) => {
         }
         
         e.classList.remove('not-selected');
+
+        initializationPage()
     })
 });
 
@@ -113,14 +115,22 @@ searchBtn.addEventListener('click', () => {
     if(searchBar.value.trim() != "" && searchBar.value.trim() != null){
         city = searchBar.value.trim();
 
-        //Removing error container if it is displayed
-        if(document.querySelector('.error'))
-        document.querySelector('.error').remove();
-        
-        launchApi();
-        resetSettingsTime();
+        initializationPage()
     }
 });
+
+//Function that removes the displayed error
+function removeError(){
+    if(document.querySelector('.error'))
+        document.querySelector('.error').remove()
+}
+
+
+function initializationPage(){
+    removeError();
+    launchApi();
+    resetSettingsTime();
+}
 
 /* Selecting forecast visualization when user click on 'Hourly' or 'Daily' */
 const settingsTime = document.querySelectorAll('.time p');
@@ -346,15 +356,13 @@ languages.forEach(e => {
         lang = e.getAttribute('value');
         changeLang(lang);
 
-        resetSettingsTime();
-
         removeSelection(document.querySelectorAll('.lang ul li'));
         e.classList.add('selected');
 
         setCookie('lang', lang, 30);
 
         if(!(searchBar.value.trim() != "" && searchBar.value.trim() != null) || !(lat != 0 && long != 0))
-            launchApi();
+            initializationPage()
     })
 })
 
