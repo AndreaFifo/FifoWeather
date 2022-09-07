@@ -146,7 +146,8 @@ const myChart = new Chart(canvas, config);
 //Updating data of chart when a city is searched
 function drawChart(temps, type = 'h', days = []){
     data.datasets[0].data = temps;
-    config.options.scales.y.min = Math.min.apply(Math, temps) - 10;
+    config.options.scales.y.min = Math.min.apply(Math, temps) - 10 < 10 ? Math.min.apply(Math, temps) - 5 : Math.min.apply(Math, temps) - 10;
+    config.options.scales.y.max = Math.max.apply(Math, temps) + 10;
     
     if(type == 'h'){
         data.labels = labels[lang][responsiveLabels()];
