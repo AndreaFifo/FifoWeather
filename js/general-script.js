@@ -41,9 +41,9 @@ menuBtn.addEventListener("click", () => {
 
 
 /* Changing theme of the page */
-const themeBtns = document.querySelectorAll('.img');
+const themeBtns = document.querySelectorAll('.btn');
 const theme = document.getElementById('theme');
-const selectedDivTheme = document.querySelector('.theme .selected-div');
+const selectedDivTheme = document.querySelector('.right .btn-slider .selected-btn');
     
 themeBtns.forEach(e => {
     e.addEventListener('click', () => {
@@ -174,7 +174,7 @@ function resetSettingsTime(){
     
     settingsTime[1].classList.remove('selected');
     settingsTime[0].classList.add('selected');
-    document.querySelector('.other-informations .time .selected-div').style.left = '0';
+    document.querySelector('.other-informations .time .selected-btn').style.left = '0';
     updateChartData(hourlyData, 'h', dailyData[0]);
 }
 

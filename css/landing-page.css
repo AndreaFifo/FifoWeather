@@ -1,0 +1,38 @@
+main{
+    min-width: 100vh;
+
+    display: flex;
+    align-items: center;
+}
+
+main .text{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+main .text h1{
+    color: var(--primary);
+    font-family: 'Lexend-SemiBold';
+}
+
+main .text h3{
+    color: var(--secondary);
+}
+
+main .text .try-it{
+    width: max-content;
+    
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background: var(--bg-container);
+    border: var(--border-container);
+    color: var(--primary);
+
+    padding: 10px 20px;
+    border-radius: 50px;
+
+    text-decoration: none;
+}

@@ -5,123 +5,126 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=s, initial-scale=1.0">
         <link rel="stylesheet" href="./css/theme/light.css" id="theme">
-        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/app.css">
+        <link rel="stylesheet" href="./css/general-style.css">
         <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <title>FifoWeather</title>
     </head>
     <body onload="launchApi(true)">
-        <header>
-            <h1>FifoWeather</h1>
-
-            <div class="hamburger">
-                <div class="line"></div>
-            </div>
-
-            <div class="right">
-                <div class="theme">
-                    <div class="img selected light">
-                        <img src="./assets/img/icons/light-theme.svg" alt="dark theme" class="theme-icon" id="drk-theme-icon">
-                    </div>
-                    <div class="img">
-                        <img src="./assets/img/icons/dark-theme.svg" alt="dark theme" class="theme-icon" id="lgt-theme-icon">
-                    </div>
-                    
-                    <div class="selected-div"></div>
+        <div class="wrapper">
+            <header>
+                <h1>FifoWeather</h1>
+    
+                <div class="hamburger">
+                    <div class="line"></div>
                 </div>
-
-                <div class="lang">
-                    <img src="./assets/img/icons/language.png" alt="lang icon" class="lang-icon">
-                    <ul>
-                        <li class="selected" value="en">
-                            <img src="./assets/img/icons/uk.png" alt="english">
-                            <p>English</p>
-                        </li>
-                        <li value="it">
-                            <img src="./assets/img/icons/italy.png" alt="italian">
-                            <p>Italian</p>
-                        </li>
-                        <li value="es">
-                            <img src="./assets/img/icons/spain.png" alt="spanish">
-                            <p>Spanish</p>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="units">
-                    <p id="celcius">°C</p>
-                    <p id="fahrenheit" class="not-selected">°F</p>
-                </div>
-            </div>
-        </header>
-
-        <main>
-            <div class="search-bar">
-                <input type="search" id="search" placeholder="Search a city's weather..." autocomplete="off">
-                <div class="btn-wrapper">
-                    <img src="./assets/img/icons/x.svg" alt="reset" class="btn" id="reset">
-                    <div class="btn" id="search-btn">
-                        <img src="./assets/img/icons/search.svg" alt="search">
-                        <p>Search</p>
-                    </div>
-                    
-                </div>
-            </div>
-
-            <div class="weather hidden">
-                <div class="general-info">
-                    <div class="container-top">
-                        <div class="left">
-                            <div class="city-date">
-                                <p class="date" id="date"></p>
-                                <h2 class="city" id="city"></h2>
-                            </div>
-                            <h1 id="temperature"></h1>
+    
+                <div class="right">
+                    <div class="btn-slider">
+                        <div class="btn selected light">
+                            <img src="./assets/img/icons/light-theme.svg" alt="dark theme" class="theme-icon" id="drk-theme-icon">
                         </div>
-                        <img class="right" src="" alt="weather icon" id="general-weather-img">
+                        <div class="btn">
+                            <img src="./assets/img/icons/dark-theme.svg" alt="dark theme" class="theme-icon" id="lgt-theme-icon">
+                        </div>
+                        
+                        <div class="selected-btn"></div>
                     </div>
-
-                    <h1 id="general-weather"></h1>
-                    <h2 id="general-description"></h2>
+    
+                    <div class="lang">
+                        <img src="./assets/img/icons/language.png" alt="lang icon" class="lang-icon">
+                        <ul>
+                            <li class="selected" value="en">
+                                <img src="./assets/img/icons/uk.png" alt="english">
+                                <p>English</p>
+                            </li>
+                            <li value="it">
+                                <img src="./assets/img/icons/italy.png" alt="italian">
+                                <p>Italian</p>
+                            </li>
+                            <li value="es">
+                                <img src="./assets/img/icons/spain.png" alt="spanish">
+                                <p>Spanish</p>
+                            </li>
+                        </ul>
+                    </div>
                     
-                    <div class="details">
-                        <p>Other information</p>
-                        <div class="details-list">
-                            <div class="detail">
-                                <img src="./assets/img/icons/wind.svg" alt="wind" class="light">
-                                <p id="wind"></p>
-                                <small>Wind</small>
+                    <div class="units">
+                        <p id="celcius">°C</p>
+                        <p id="fahrenheit" class="not-selected">°F</p>
+                    </div>
+                </div>
+            </header>
+    
+            <main>
+                <div class="search-bar">
+                    <input type="search" id="search" placeholder="Search a city's weather..." autocomplete="off">
+                    <div class="btn-wrapper">
+                        <img src="./assets/img/icons/x.svg" alt="reset" class="btn" id="reset">
+                        <div class="btn" id="search-btn">
+                            <img src="./assets/img/icons/search.svg" alt="search">
+                            <p>Search</p>
+                        </div>
+                        
+                    </div>
+                </div>
+    
+                <div class="weather hidden">
+                    <div class="general-info">
+                        <div class="container-top">
+                            <div class="left">
+                                <div class="city-date">
+                                    <p class="date" id="date"></p>
+                                    <h2 class="city" id="city"></h2>
+                                </div>
+                                <h1 id="temperature"></h1>
                             </div>
-                            <div class="detail">
-                                <img src="./assets/img/icons/droplet.svg" alt="humidity" class="light">
-                                <p id="humidity"></p>
-                                <small>Humidity</small>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/img/icons/pressure.svg" alt="precipitation" class="light">
-                                <p id="pressure"></p>
-                                <small>Pressure</small>
+                            <img class="right" src="" alt="weather icon" id="general-weather-img">
+                        </div>
+    
+                        <h1 id="general-weather"></h1>
+                        <h2 id="general-description"></h2>
+                        
+                        <div class="details">
+                            <p>Other information</p>
+                            <div class="details-list">
+                                <div class="detail">
+                                    <img src="./assets/img/icons/wind.svg" alt="wind" class="light">
+                                    <p id="wind"></p>
+                                    <small>Wind</small>
+                                </div>
+                                <div class="detail">
+                                    <img src="./assets/img/icons/droplet.svg" alt="humidity" class="light">
+                                    <p id="humidity"></p>
+                                    <small>Humidity</small>
+                                </div>
+                                <div class="detail">
+                                    <img src="./assets/img/icons/pressure.svg" alt="precipitation" class="light">
+                                    <p id="pressure"></p>
+                                    <small>Pressure</small>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="other-informations">
+                        <div class="time">
+                            <p class="selected">Hourly</p>
+                            <p>Daily</p>
+                            <div class="selected-btn"></div>
+                        </div>
+                        <div class="forecast"> 
+                            <div class="carousel"></div>
+                        </div>
+    
+                        <div class="graph">
+                            <p>Day temperature</p>
+                            <canvas id="chart"></canvas>
+                        </div>
+                    </div>
                 </div>
-                <div class="other-informations">
-                    <div class="time">
-                        <p class="selected">Hourly</p>
-                        <p>Daily</p>
-                        <div class="selected-div"></div>
-                    </div>
-                    <div class="forecast"> 
-                        <div class="carousel"></div>
-                    </div>
-
-                    <div class="graph">
-                        <p>Day temperature</p>
-                        <canvas id="chart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </main>
+            </main>
+        </div>
 
         <script src="./js/cookie.js"></script>
         <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>

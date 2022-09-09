@@ -5,187 +5,191 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./css/theme/light.css" id="theme">
+        <link rel="stylesheet" href="./css/general-style.css">
+        <link rel="stylesheet" href="./css/landing-page.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <title>FifoWeather Landing Page</title>
     </head>
     <body>
-        <header>
-            <h1>FifoWeather</h1>
-            
-            <div class="hamburger">
-                <div class="line"></div>
-            </div>
-
-            <div class="right">
-                <div class="theme">
-                    <div class="img selected light">
-                        <img src="./assets/img/icons/light-theme.svg" alt="dark theme" class="theme-icon" id="drk-theme-icon">
+        <div class="wrapper">
+            <header>
+                <h1>FifoWeather</h1>
+                
+                <div class="hamburger">
+                    <div class="line"></div>
+                </div>
+    
+                <div class="right">
+                    <div class="btn-slider">
+                        <div class="btn selected light">
+                            <img src="./assets/img/icons/light-theme.svg" alt="dark theme" class="theme-icon" id="drk-theme-icon">
+                        </div>
+                        <div class="btn">
+                            <img src="./assets/img/icons/dark-theme.svg" alt="dark theme" class="theme-icon" id="lgt-theme-icon">
+                        </div>
+                        
+                        <div class="selected-btn"></div>
                     </div>
-                    <div class="img">
-                        <img src="./assets/img/icons/dark-theme.svg" alt="dark theme" class="theme-icon" id="lgt-theme-icon">
-                    </div>
-                    
-                    <div class="selected-div"></div>
-                </div>
-
-                <div class="lang">
-                    <img src="./assets/img/icons/language.png" alt="lang icon" class="lang-icon">
-                    <ul>
-                        <li class="selected" value="en">
-                            <img src="./assets/img/icons/uk.png" alt="english">
-                            <p>English</p>
-                        </li>
-                        <li value="it">
-                            <img src="./assets/img/icons/italy.png" alt="italian">
-                            <p>Italian</p>
-                        </li>
-                        <li value="es">
-                            <img src="./assets/img/icons/spain.png" alt="spanish">
-                            <p>Spanish</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </header>
-
-        <main>
-            <div class="text">
-                <h1>
-                    Rapid and accurate <br>
-                    forecastest weather
-                </h1>
-                <h3>Find out world wide weather forecast</h3>
-
-                <div class="try-it">
-                    Try it now for free
-                    <img src="./assets/img/icons/arrow-right.svg" alt="arrow">
-                </div>
-            </div>
-
-            <div class="weather-example">
-                <img src="./assets/img/landing-page/light-main.png" alt="weather example">
-                <div class="data">
-                    <h3 class="city">Palermo</h3>
-                    <img src="./assets/img/weather/sun-lil-cloudy.png" alt="weather">
-
-                    <div class="info">
-                        <h2 class="temp">20°</h2>
-                        <h2 class="weather">Raining</h2>
+    
+                    <div class="lang">
+                        <img src="./assets/img/icons/language.png" alt="lang icon" class="lang-icon">
+                        <ul>
+                            <li class="selected" value="en">
+                                <img src="./assets/img/icons/uk.png" alt="english">
+                                <p>English</p>
+                            </li>
+                            <li value="it">
+                                <img src="./assets/img/icons/italy.png" alt="italian">
+                                <p>Italian</p>
+                            </li>
+                            <li value="es">
+                                <img src="./assets/img/icons/spain.png" alt="spanish">
+                                <p>Spanish</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </main>
-
-        <div class="services">
-            <h2>What we offer</h2>
-            
-            <div class="wrapper">
-                <div class="service">
-                    <img src="./assets/img/icons/globe.svg" alt="world">
-                    <h3>World wide</h3>
-                    <p>
-                        Search the weather of
-                        every place in the world
-                    </p>
-                </div>
-
-                <div class="service">
-                    <img src="./assets/img/icons/fast.svg" alt="fast">
-                    <h3>Efficiency</h3>
-                    <p>
-                        We offer the
-                        best and fastest
-                        experience possible
-                    </p>
-                </div>
-
-                <div class="service">
-                    <img src="./assets/img/icons/calendar.svg" alt="time option">
-                    <h3>Hourly & Daily</h3>
-                    <p>
-                        With these forecastes
-                        you can be informed 
-                        in the best way
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="about">
-            <div class="app">
+            </header>
+    
+            <main>
                 <div class="text">
                     <h1>
-                        All the information that
-                        you need to know.
+                        Rapid and accurate <br>
+                        forecastest weather
                     </h1>
-                    <h3>
-                        Thanks to our application, you can see all the weather information of the city where you live and your favorite cities.
-                        In particular, you can have access to all the hourly forecastes of the day and of the week.
-                    </h3>
+                    <h3>Find out world wide weather forecast</h3>
+    
+                    <a href="./index.html" class="try-it">
+                        <h2>Try it now for free</h2>
+                        <img src="./assets/img/icons/arrow-right.svg" alt="arrow" class="dark">
+                    </a>
                 </div>
-
-                <div class="app-images">
-                    <div class="slide-btn">
-                        <img src="./assets/img/icons/smartphone.svg" alt="phone">
-                        <img src="./assets/img/icons/monitor.svg" alt="desktop">
-
-                        <div class="selected-option"></div>
+    
+                <div class="weather-example">
+                    <img src="./assets/img/landing-page/light-main.png" alt="weather example">
+                    <div class="data">
+                        <h3 class="city">Palermo</h3>
+                        <img src="./assets/img/weather/sun-lil-cloudy.png" alt="weather">
+    
+                        <div class="info">
+                            <h2 class="temp">20°</h2>
+                            <h2 class="weather">Raining</h2>
+                        </div>
                     </div>
-
-                    <img src="./assets/img/landing-page/light-phone.png" alt="app">
+                </div>
+            </main>
+    
+            <div class="services">
+                <h2>What we offer</h2>
+                
+                <div class="wrapper">
+                    <div class="service">
+                        <img src="./assets/img/icons/globe.svg" alt="world">
+                        <h3>World wide</h3>
+                        <p>
+                            Search the weather of
+                            every place in the world
+                        </p>
+                    </div>
+    
+                    <div class="service">
+                        <img src="./assets/img/icons/fast.svg" alt="fast">
+                        <h3>Efficiency</h3>
+                        <p>
+                            We offer the
+                            best and fastest
+                            experience possible
+                        </p>
+                    </div>
+    
+                    <div class="service">
+                        <img src="./assets/img/icons/calendar.svg" alt="time option">
+                        <h3>Hourly & Daily</h3>
+                        <p>
+                            With these forecastes
+                            you can be informed 
+                            in the best way
+                        </p>
+                    </div>
                 </div>
             </div>
-
-            <div class="api">
-                <img src="./assets/img/landing-page/light-api.png" alt="api">
-
-                <div class="text">
-                    <h1>
-                        All the data came from
-                        Open Weather’s API.
-                    </h1>
-                    <h3>
-                        They are providing highly recognisable weather products that make working with the weather data a way easier. 
-                        They work with millions of developers around a clock and believe that these benefits might be suitable for most of applications, up to the complex enterprise systems.
-                    </h3>
+    
+            <div class="about">
+                <div class="app">
+                    <div class="text">
+                        <h1>
+                            All the information that
+                            you need to know.
+                        </h1>
+                        <h3>
+                            Thanks to our application, you can see all the weather information of the city where you live and your favorite cities.
+                            In particular, you can have access to all the hourly forecastes of the day and of the week.
+                        </h3>
+                    </div>
+    
+                    <div class="app-images">
+                        <div class="slide-btn">
+                            <img src="./assets/img/icons/smartphone.svg" alt="phone">
+                            <img src="./assets/img/icons/monitor.svg" alt="desktop">
+    
+                            <div class="selected-option"></div>
+                        </div>
+    
+                        <img src="./assets/img/landing-page/light-phone.png" alt="app">
+                    </div>
+                </div>
+    
+                <div class="api">
+                    <img src="./assets/img/landing-page/light-api.png" alt="api">
+    
+                    <div class="text">
+                        <h1>
+                            All the data came from
+                            Open Weather’s API.
+                        </h1>
+                        <h3>
+                            They are providing highly recognisable weather products that make working with the weather data a way easier. 
+                            They work with millions of developers around a clock and believe that these benefits might be suitable for most of applications, up to the complex enterprise systems.
+                        </h3>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="end">
-            <h1>Try FifoWeather now!</h1>
-            <a href="./index.html" target="_blank" rel="noopener noreferrer">andreafifo.github.io/FifoWeather</a>
-        </div>
-
-        <div class="footer">
-            <footer>
-                <div class="logo">
-                    <h1>FifoWeather</h1>
-                    <h3>Weather App</h3>
-                </div>
-
-                <div class="socials">
-                    <div class="social">
-                        <img src="./assets/img/icons/social/github.svg" alt="github">
-                        <h3>GitHub</h3>
+    
+            <div class="end">
+                <h1>Try FifoWeather now!</h1>
+                <a href="./index.html" target="_blank" rel="noopener noreferrer">andreafifo.github.io/FifoWeather</a>
+            </div>
+    
+            <div class="footer">
+                <footer>
+                    <div class="logo">
+                        <h1>FifoWeather</h1>
+                        <h3>Weather App</h3>
                     </div>
-
-                    <div class="social">
-                        <img src="./assets/img/icons/social/instagram.svg" alt="instagram">
-                        <h3>Instagram</h3>
+    
+                    <div class="socials">
+                        <div class="social">
+                            <img src="./assets/img/icons/social/github.svg" alt="github">
+                            <h3>GitHub</h3>
+                        </div>
+    
+                        <div class="social">
+                            <img src="./assets/img/icons/social/instagram.svg" alt="instagram">
+                            <h3>Instagram</h3>
+                        </div>
+    
+                        <div class="social">
+                            <img src="./assets/img/icons/social/twitter.svg" alt="twitter">
+                            <h3>Twitter</h3>
+                        </div>
+    
+                        <div class="social">
+                            <img src="./assets/img/icons/social/at-sign.svg" alt="email">
+                            <h3>Email</h3>
+                        </div>
                     </div>
-
-                    <div class="social">
-                        <img src="./assets/img/icons/social/twitter.svg" alt="twitter">
-                        <h3>Twitter</h3>
-                    </div>
-
-                    <div class="social">
-                        <img src="./assets/img/icons/social/at-sign.svg" alt="email">
-                        <h3>Email</h3>
-                    </div>
-                </div>
-            </footer>
+                </footer>
+            </div>
         </div>
     </body>
 </html>
