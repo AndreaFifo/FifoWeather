@@ -58,8 +58,7 @@ body{
 }
 
 header, main, .services, .about, .end, footer{
-    width: 100%
-    ;
+    width: 100%;
     max-width: 1400px;
 }
 
@@ -115,7 +114,7 @@ header .right{
     transform: scale(1.08);
 }
 
-.btn-slider .selected-btn{
+.selected-btn{
     background: var(--btn-time);
     border-radius: 16px;
     position: absolute;

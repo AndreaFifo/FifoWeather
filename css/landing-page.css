@@ -1,5 +1,5 @@
 main{
-    min-width: 100vh;
+    min-height: calc(100vh - 65px);
 
     display: flex;
     align-items: center;
@@ -9,7 +9,7 @@ main{
 main .text{
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
 }
 
 main .text h1{
@@ -33,6 +33,7 @@ main .text .try-it{
     color: var(--primary);
 
     padding: 10px 20px;
+    margin-top: 10px;
     border-radius: 50px;
 
     text-decoration: none;
@@ -40,13 +41,12 @@ main .text .try-it{
 
 main .weather-example{
     width: 50%;
+    height: 100%;
 
     position: relative;
 
-}
-
-main .weather-example img[alt="weather example"]{
-    max-width: 550px;
-
-    position: absolute;
+    background: url(../assets/img/landing-page/light-main.png);
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
 }

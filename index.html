@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <title>FifoWeather</title>
     </head>
-    <body onload="launchApi(false)">
+    <body onload="launchApi(true)">
         <div class="wrapper">
             <header>
                 <h1>FifoWeather</h1>
@@ -61,8 +61,8 @@
                 <div class="search-bar">
                     <input type="search" id="search" placeholder="Search a city's weather..." autocomplete="off">
                     <div class="btn-wrapper">
-                        <img src="./assets/img/icons/x.svg" alt="reset" class="btn" id="reset">
-                        <div class="btn" id="search-btn">
+                        <img src="./assets/img/icons/x.svg" alt="reset" class="btn-delete" id="reset">
+                        <div class="btn-search" id="search-btn">
                             <img src="./assets/img/icons/search.svg" alt="search">
                             <p>Search</p>
                         </div>
