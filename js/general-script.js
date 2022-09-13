@@ -2,11 +2,11 @@
 window.addEventListener('load', () => {
     if(getCookie('theme') == 'dark'){
         document.getElementById('theme').setAttribute('href', './css/theme/dark.css')
-        changeBtnTheme(document.querySelector('.img #lgt-theme-icon').parentElement);
+        changeBtnTheme(document.querySelector('.btn #lgt-theme-icon').parentElement);
     }
     else{
         document.getElementById('theme').setAttribute('href', './css/theme/light.css');
-        changeBtnTheme(document.querySelector('.img #drk-theme-icon').parentElement);
+        changeBtnTheme(document.querySelector('.btn #drk-theme-icon').parentElement);
     }
 
     changeChartTheme(document.getElementById('theme').getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark');
@@ -139,7 +139,7 @@ settingsTime.forEach((e, i) => {
         settingsTime[0].classList.remove('selected');
         settingsTime[1].classList.remove('selected');
 
-        document.querySelector('.time .selected-div').style.left = i == 0 ? '0' : '50%';
+        document.querySelector('.time .selected-btn').style.left = i == 0 ? '0' : '50%';
         setSwiperData(i == 0 ? hourlyData : dailyData, i == 0 ? 'h' : 'd');
         updateChartData(i == 0 ? hourlyData : dailyData, i == 0 ? 'h' : 'd', i == 0 ? dailyData[0] : '');
 

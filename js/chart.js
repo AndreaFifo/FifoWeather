@@ -160,6 +160,7 @@ function drawChart(temps, type = 'h', days = []){
 }
 
 function changeChartTheme(theme){
+    console.log(theme == 'light')
     if(theme == 'dark'){
         config.options.scales.x.ticks.color = '#f0f0f0';
         config.options.plugins.datalabels.color = '#f0f0f0'

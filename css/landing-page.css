@@ -3,6 +3,7 @@ main{
 
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 main .text{
@@ -35,4 +36,17 @@ main .text .try-it{
     border-radius: 50px;
 
     text-decoration: none;
+}
+
+main .weather-example{
+    width: 50%;
+
+    position: relative;
+
+}
+
+main .weather-example img[alt="weather example"]{
+    max-width: 550px;
+
+    position: absolute;
 }
