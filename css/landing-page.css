@@ -1,9 +1,10 @@
 main{
-    min-height: calc(100vh - 65px);
+    height: calc(100vh - 65px);
+    max-height: 668px;
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 main .text{
@@ -15,10 +16,12 @@ main .text{
 main .text h1{
     color: var(--primary);
     font-family: 'Lexend-SemiBold';
+    font-size: clamp(1.875rem, -0.6250rem + 4.1667vw, 2.5rem);
 }
 
 main .text h3{
     color: var(--secondary);
+    font-size: clamp(1rem, -1.0000rem + 3.3333vw, 1.5rem);
 }
 
 main .text .try-it{
@@ -33,20 +36,286 @@ main .text .try-it{
     color: var(--primary);
 
     padding: 10px 20px;
-    margin-top: 10px;
+    margin-top: 20px;
     border-radius: 50px;
 
     text-decoration: none;
 }
 
+main .text .try-it h2{
+    font-size: clamp(1rem, -1.0000rem + 3.3333vw, 1.5rem);
+}
+
+@media screen and (max-width: 600px) {
+    main .text h1{
+        font-size: clamp(1.5rem, 0.6250rem + 5.0000vw, 2.5rem);
+    }
+    
+    main .text h3{
+        font-size: clamp(1rem, 0.5625rem + 2.5000vw, 1.5rem);
+    }
+
+    main .text .try-it h2{
+        font-size: clamp(1rem, 0.5625rem + 2.5000vw, 1.5rem);
+    }
+    
+}
+
 main .weather-example{
     width: 50%;
+    max-width: 400px;
     height: 100%;
+    max-height: 370px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+main .weather-example .bg{
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: var(--bg-container);
+    border: var(--border-container);
+    border-radius: 24px;
+
+    box-shadow: var(--box-shadow);
+    backdrop-filter: blur(6px);
+
+    z-index: 5;
+}
+
+main .weather-example img[alt="bg-w"]{
+    width: 165px;
+    position: absolute;
+}
+
+main .weather-example > img:nth-child(1){
+    transform: rotate(-25.5deg);
+    top: 0;
+    left: -100px;
+
+    z-index: 1;
+}
+
+main .weather-example > img:nth-child(2){
+    top: 50%;
+    right: -60px;
+    transform: rotate(15.86deg)
+               translateY(-50%);
+
+    z-index: 6;
+}
+
+main .weather-example > img:nth-child(3){
+    bottom: -50px;
+    left: -60px;
+    transform: rotate(17.73deg);
+
+    z-index: 6;
+}
+
+main .weather-example .data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     position: relative;
 
-    background: url(../assets/img/landing-page/light-main.png);
-    background-size: 90%;
-    background-position: center;
-    background-repeat: no-repeat;
+    z-index: 10;
+
+    color: var(--primary);
+    text-align: center;
+    font-family: 'Lexend-SemiBold';
 }
+
+main .weather-example .data h2.weather{
+    background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+
+    font-size: clamp(1.563rem, 1.0161rem + 3.1250vw, 2.188rem);
+}
+
+main .weather-example .data img{
+    width: 150px;
+}
+
+main .weather-example .data .city{
+    font-size: clamp(1.25rem, 1.0313rem + 1.2500vw, 1.5rem);
+}
+
+main .weather-example .data .info .temp{
+    font-size: clamp(1.875rem, 1.3281rem + 3.1250vw, 2.5rem);
+}
+
+main .weather-example .data .info .weather{
+    background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+@media screen and (max-width: 1200px) {
+    main .weather-example{
+        max-width: 300px;
+        max-height: 300px;
+    }
+    
+    main .weather-example img[alt="bg-w"]{
+        width: 140px;
+    }
+    
+    main .weather-example > img:nth-child(1){
+        left: -85px;
+    }
+    
+    main .weather-example > img:nth-child(2){
+        right: -50px;
+    }
+    
+    main .weather-example > img:nth-child(3){
+        bottom: -50px;
+        left: -60px;
+    }
+    
+    main .weather-example .data{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    
+        position: relative;
+    
+        z-index: 10;
+    
+        color: var(--primary);
+        text-align: center;
+        font-family: 'Lexend-SemiBold';
+    }
+    
+    main .weather-example .data img{
+        width: 120px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    main{
+        flex-direction: column;
+        gap: 20px;
+
+        margin: 60px 0;
+    }
+
+    main .text{
+        align-items: center;
+        text-align: center;
+    }
+
+    main .weather-example{
+        width: 100%;
+    }
+
+    main .weather-example .data{
+        gap: 10px;
+    }
+
+    main .weather-example .data img{
+        width: 100px;
+    }
+}
+
+
+@media screen and (min-width: 600px) and (max-width: 960px) {
+    main .text h1{
+        font-size: 40px;
+    }
+    
+    main .text h3{
+        font-size: 24px;
+    }
+
+    main .text .try-it h2{
+        font-size: 24px;
+    }
+
+    main .weather-example{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px){
+    main .weather-example img[alt="bg-w"]{
+        width: 120px;
+    }
+    
+    main .weather-example > img:nth-child(1){
+        left: -70px;
+    }
+    
+    main .weather-example > img:nth-child(2){
+        right: -40px;
+    }
+    
+    main .weather-example > img:nth-child(3){
+        bottom: -40px;
+        left: -50px;
+    }
+}
+
+@media screen and (max-width: 400px){
+    main .weather-example{
+        max-width: 250px;
+        max-height: 250px;
+    }
+
+    main .weather-example img[alt="bg-w"]{
+        width: 100px;
+    }
+    
+    main .weather-example > img:nth-child(1){
+        left: -60px;
+    }
+    
+    main .weather-example > img:nth-child(2){
+        right: -30px;
+    }
+    
+    main .weather-example > img:nth-child(3){
+        bottom: -30px;
+        left: -45px;
+    }
+}
+
+@media screen and (max-width: 340px){
+    main .weather-example img[alt="bg-w"]{
+        width: 80px;
+    }
+    
+    main .weather-example > img:nth-child(1){
+        left: -40px;
+    }
+    
+    main .weather-example > img:nth-child(2){
+        right: -20px;
+    }
+    
+    main .weather-example > img:nth-child(3){
+        bottom: -20px;
+        left: -25px;
+    }
+}
+
+/* 1070 */

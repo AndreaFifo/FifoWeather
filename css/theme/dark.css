@@ -24,4 +24,6 @@
     --theme-hover: #27354d;
     
     --bg: linear-gradient(127.54deg, #1B2D47 21.73%, #0F1B2D 78.27%);
+
+    --box-shadow: 0px 12px 18px rgba(17, 26, 39, 0.3);
 }
