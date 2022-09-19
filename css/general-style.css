@@ -47,12 +47,13 @@ body{
     padding: 0 8%;
 }
 
-.wrapper{
+body > .wrapper{
     width: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 30px;
 
     padding: 20px 0;
 }
