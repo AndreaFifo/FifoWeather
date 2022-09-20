@@ -1,3 +1,7 @@
+main, .services, .about, .end{
+    margin: 30px 0;
+}
+
 main{
     height: calc(100vh - 195px);
     max-height: 638px;
@@ -215,7 +219,7 @@ main .weather-example .data .info .weather{
 
 @media screen and (max-width: 960px) {
     .services, .about, .end{
-        margin-top: 50px;
+        margin: 50px 0;
     }
 
     main{
@@ -224,7 +228,7 @@ main .weather-example .data .info .weather{
 
         flex-direction: column;
 
-        margin: 50px 0;
+        margin: 20px 0 30px;
     }
 
     main .text{
@@ -330,8 +334,6 @@ main .weather-example .data .info .weather{
     }
 }
 
-
-
 .services{
     width: 100%;
 
@@ -361,13 +363,14 @@ main .weather-example .data .info .weather{
     transform: translateX(-50%);
 
     background: var(--primary);
-    opacity: 0.3;
+    opacity: 0.1;
 
     border-radius: 44px;
 }
 
 .services .wrapper{
-    width: 70%;
+    width: 100%;
+    max-width: 1015px;
 
     display: flex;
     flex-wrap: wrap;
@@ -395,6 +398,17 @@ main .weather-example .data .info .weather{
     background: var(--bg-container);
     border: var(--border-container);
     border-radius: 24px;
+}
+
+@media screen and (min-width: 750px) {
+    .services{
+        gap: 90px;
+    }
+
+    .services .wrapper .service:nth-child(2){
+        position: relative;
+        top: -20px;
+    }
 }
 
 .services .wrapper .service .img{
@@ -473,8 +487,9 @@ main .weather-example .data .info .weather{
 }
 
 .about .app .app-images .btn-slider{
-   
-    
+    position: absolute;
+    top: -20px;
+    left: 20px;
 }
 
 @media screen and (max-width: 960px){
