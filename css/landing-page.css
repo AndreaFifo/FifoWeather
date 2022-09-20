@@ -1,4 +1,5 @@
 main{
+    height: calc(100vh - 195px);
     max-height: 638px;
 
     display: flex;
@@ -222,6 +223,8 @@ main .weather-example .data .info .weather{
         min-height: 528px;
 
         flex-direction: column;
+
+        margin: 50px 0;
     }
 
     main .text{
