@@ -1,6 +1,4 @@
 main{
-    height: calc(100vh - 95px);
-    min-height: 638px;
     max-height: 638px;
 
     display: flex;
@@ -220,12 +218,10 @@ main .weather-example .data .info .weather{
     }
 
     main{
-        min-height: calc(100vh - 135px);
-        max-height: calc(100vh - 135px);
+        height: calc(70vh - 135px);
+        min-height: 528px;
 
         flex-direction: column;
-
-        margin-top: 20px;
     }
 
     main .text{
