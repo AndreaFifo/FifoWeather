@@ -4,6 +4,7 @@ main, .services, .about, .end{
 
 main{
     height: calc(100vh - 195px);
+    min-height: 528px;
     max-height: 638px;
 
     display: flex;
@@ -449,6 +450,7 @@ main .weather-example .data .info .weather{
 .about .app, .about .api{
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .about .text{
@@ -480,6 +482,7 @@ main .weather-example .data .info .weather{
 
 .about .app .app-images, .about .api img{
     width: 50%;
+    max-width: 600px;
 }
 
 .about .app-images img[alt="app"]{
@@ -488,8 +491,41 @@ main .weather-example .data .info .weather{
 
 .about .app .app-images .btn-slider{
     position: absolute;
-    top: -20px;
-    left: 20px;
+    top: 20px;
+    left: 60px;
+}
+
+@media screen and (max-width: 1200px){
+    .about .app .app-images .btn-slider{
+        min-width: 85px;
+        padding: 3px 0;
+        
+        top: 10px;
+        left: 60px;
+    }
+
+    .about .app .app-images .btn-slider .btn img{
+        width: 22px;
+    }
+
+    .about .app .app-images .btn-slider .selected-btn{
+        height: 30px;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .about .app .app-images .btn-slider{
+        top: -10px;
+        left: 20px;
+    }
+
+    .about .app .app-images .btn-slider .btn img{
+        width: 22px;
+    }
+
+    .about .app .app-images .btn-slider .selected-btn{
+        height: 30px;
+    }
 }
 
 @media screen and (max-width: 960px){
