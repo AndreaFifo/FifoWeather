@@ -44,7 +44,6 @@ body{
     background: var(--bg);
     min-height: 100vh;
     font-family: 'Lexend-Regular';
-    padding: 0 8%;
 }
 
 body > .wrapper{
@@ -55,7 +54,7 @@ body > .wrapper{
     align-items: center;
     gap: 30px;
 
-    padding: 20px 0;
+    padding: 20px 8% 0;
 }
 
 header, main, .services, .about, .end, footer{

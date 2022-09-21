@@ -47,6 +47,7 @@ main .text .try-it{
     border-radius: 50px;
 
     text-decoration: none;
+    letter-spacing: 1px;
 }
 
 main .text .try-it h2{
@@ -146,7 +147,7 @@ main .weather-example .data{
 }
 
 main .weather-example .data h2.weather{
-    background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+    background: var(--land-weather-text);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -165,14 +166,6 @@ main .weather-example .data .city{
 
 main .weather-example .data .info .temp{
     font-size: clamp(1.875rem, 1.3281rem + 3.1250vw, 2.5rem);
-}
-
-main .weather-example .data .info .weather{
-    background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
 }
 
 @media screen and (max-width: 1200px) {
@@ -569,4 +562,120 @@ main .weather-example .data .info .weather{
         max-width: 400px;
         min-width: 250px;
     }
+}
+
+.end{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+
+    color: var(--primary);
+    text-align: center;
+}
+
+.end h1{
+    font-size: 40px;
+}
+
+.end a{
+    padding: 20px 30px;
+
+    background: var(--bg-container);
+    border: var(--border-container);
+    border-radius: 16px;
+
+    color: var(--secondary);
+    font-size: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .end h1{
+        font-size: clamp(1.5rem, 0.6250rem + 5.0000vw, 2.5rem);
+    }
+
+    .end a{
+        padding: 10px 20px;
+
+        font-size: clamp(1rem, 0.5625rem + 2.5000vw, 1.5rem);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .end a{
+        padding: 10px;
+    }
+}
+
+
+.footer{
+    width: 100%;
+    min-height: 200px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--footer);
+
+    margin-top: 100px;
+    padding: 20px;
+}
+
+.footer footer{
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    row-gap: 60px;
+}
+
+.footer footer h1{
+    color: white;
+}
+
+.footer footer h3{
+    color: #E8E8E8;
+    font-family: 'Lexend-Light';
+    letter-spacing: 1px;
+}
+
+.footer footer .socials{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    row-gap: 30px;
+}
+
+.footer footer .socials a{
+    text-decoration: none;
+}
+
+footer .socials .social{
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+footer .socials .social img{
+    width: 24px;
+}
+
+@media screen and (max-width: 524px) {
+    .footer{
+        text-align: center;
+    }
+}
+
+.svg{
+    filter: var(--theme-icon);
 }
