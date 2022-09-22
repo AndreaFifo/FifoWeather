@@ -2,6 +2,10 @@
     --animate-delay: 0.1s
 }
 
+.wrapper{
+    padding-bottom: 20px !important;
+}
+
 header .right .units{
     display: flex;
     gap: 20px;

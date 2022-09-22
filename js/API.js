@@ -1,7 +1,3 @@
-//Key of openweather API
-const apiKey = 'ff24c4014e5de01237371f8e9f162185';
-const ipGeocalizationKey = '77aa98107a2640f6bfc5e467f59fef9c';
-
 //Declaring variables that will be used in API request
 let unit = 'metric';
 let unitLetter = '°C';
@@ -86,7 +82,7 @@ function launchApi(first = false){
             //Initialize date based on timezone of the city requested
             date = changeTimeZone(new Date(), data.timezone);
         
-            document.getElementById('date').innerText = language[lang].generalData.day + date.getDate() + ' ' + date.toLocaleString('en-us', { month: 'short' });
+            document.getElementById('date').innerText = language[lang].generalData.day + date.getDate() + ' ' + date.toLocaleString(lang, { month: 'short' });
 
             //Creating object to make easier the selection of data on function.
             let generalData = {
@@ -210,48 +206,6 @@ function removeForecast(){
     }
 }
 
-//Function that, depending on the weather(in particular on the icon and description), set the source for the images to display the correct weather icon
-function setImage(element, weather, icon, description){
-    if(weather.toLowerCase() == 'clear' || weather.toLowerCase() == 'sereno' || weather.toLowerCase() == 'claro'){
-        if(icon == '01d')
-            element.setAttribute('src', './assets/img/weather/clear-sun.png');
-        else
-            element.setAttribute('src', './assets/img/weather/moon.png');
-    }
-    else if(weather.toLowerCase() == 'clouds' || weather.toLowerCase() == 'nuvoloso' || weather.toLowerCase() == 'nubes'){
-        if(description == 'few clouds'){
-            if(icon == '02d')
-                element.setAttribute('src', './assets/img/weather/sun-lil-cloudy.png');
-            else
-                element.setAttribute('src', './assets/img/weather/night-lil-cloudy.png');
-        }
-        else if(description == 'scattered clouds'){
-            if(icon == '03d')
-                element.setAttribute('src', './assets/img/weather/sun-mid-cloudy.png');
-            else
-                element.setAttribute('src', './assets/img/weather/night-mid-cloudy.png');
-        } 
-        else
-            element.setAttribute('src', './assets/img/weather/broken-cloudy.png');    
-    }
-    else if((weather.toLowerCase() == 'rain' || weather.toLowerCase() == 'pioggia' || weather.toLowerCase() == 'lluvia') || (weather.toLowerCase() == 'drizzle' || weather.toLowerCase() == 'pioggerella' || weather.toLowerCase() == 'llovizna')){
-        if(description == 'shower rain' || description.includes('drizzle'))
-            element.setAttribute('src', './assets/img/weather/rain.png');
-        else{
-            if(icon == '10d')
-                element.setAttribute('src', './assets/img/weather/sun-rain.png');
-            else
-                element.setAttribute('src', './assets/img/weather/night-rain.png');
-        }
-    }
-    else if((weather.toLowerCase() == 'thunderstorm' || weather.toLowerCase() == 'temporale' || weather.toLowerCase() == 'tormenta') && (description.includes('rain') || description.includes('drizzle'))){
-        element.setAttribute('src', './assets/img/weather/heavyrain-storm.png');
-    }
-    else if((weather.toLowerCase() == 'thunderstorm' || weather.toLowerCase() == 'temporale' || weather.toLowerCase() == 'tormenta') && (!description.includes('rain') && !description.includes('drizzle'))){
-        element.setAttribute('src', './assets/img/weather/thunder.png');
-    }
-}
-
 
 
 //Function that modify chart data based on the time setting selected
@@ -285,13 +239,6 @@ function updateChartData(data, type, hDataDaily = {}){
         drawChart(temps);
         graphP.innerText = language[lang].chart.day;
     }
-}
-
-//Function that changes the timezone of the date
-function changeTimeZone(date, timezone){
-    return new Date(
-        new Date(date).toLocaleString('en-US', { timeZone: timezone})
-    );
 }
 
 //Function that creates and displays an error container

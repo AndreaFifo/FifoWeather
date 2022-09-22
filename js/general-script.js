@@ -1,12 +1,16 @@
+//Key of openweather API
+const apiKey = 'ff24c4014e5de01237371f8e9f162185';
+const ipGeocalizationKey = '77aa98107a2640f6bfc5e467f59fef9c';
+
 /* Setting theme and language during page loading */
 window.addEventListener('load', () => {
     if(getCookie('theme') == 'dark'){
         document.getElementById('theme').setAttribute('href', './css/theme/dark.css')
-        changeBtnTheme(document.querySelector('.btn #lgt-theme-icon').parentElement);
+        changeBtnTheme(document.querySelector('#lgt-theme-icon').parentElement, selectedDivTheme, themeBtns, window.location.pathname == '/landing-page.html' ? appBtnImgs : null);
     }
     else{
         document.getElementById('theme').setAttribute('href', './css/theme/light.css');
-        changeBtnTheme(document.querySelector('.btn #drk-theme-icon').parentElement);
+        changeBtnTheme(document.querySelector('#drk-theme-icon').parentElement, selectedDivTheme, themeBtns, window.location.pathname == '/landing-page.html' ? appBtnImgs : null);
     }
 
     lang = getCookie('lang');
@@ -21,6 +25,9 @@ window.addEventListener('load', () => {
         changeChartTheme(document.getElementById('theme').getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark');
         changeLangApp(getCookie('lang'));
     }
+
+    if(window.location.pathname == '/landing-page.html')
+        changeDeviceImg(true)
 })
 
 /* Using of hamburger icon */
@@ -47,12 +54,14 @@ const themeBtns = document.querySelectorAll('.right .btn-slider .btn');
 const theme = document.getElementById('theme');
 const selectedDivTheme = document.querySelector('.right .btn-slider .selected-btn');
     
-themeBtns.forEach((e, i) => {
+themeBtns.forEach(e => {
     e.addEventListener('click', () => {
         if(!e.classList.contains('selected')){
             theme.setAttribute('href', theme.getAttribute('href') === './css/theme/light.css' ? './css/theme/dark.css' : './css/theme/light.css');
         
-            changeBtnTheme(e)
+            changeBtnTheme(e, selectedDivTheme, themeBtns, window.location.pathname == '/landing-page.html' ? appBtnImgs : null)
+            if(window.location.pathname == '/landing-page.html')
+                changeDeviceImg(true)
 
             if(window.location.pathname == '/index.html'){
                 changeChartTheme(theme.getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark');
@@ -63,15 +72,35 @@ themeBtns.forEach((e, i) => {
     });
 })
 
-function changeBtnTheme(e){
-    selectedDivTheme.style.left = theme.getAttribute('href') === './css/theme/light.css' ? '0' : '50%';
-        
-    removeSelection(themeBtns);
-    e.classList.add('selected');
+function changeBtnTheme(e, selDiv = selectedDivTheme, arr = themeBtns, deviceBtns = null){
+    arr.forEach(e => {
+        e.classList.remove('dark', 'light');
+    })
 
-    themeBtns[0].classList.remove('dark');
-    themeBtns[1].classList.remove('light');
+    if(deviceBtns != null){
+        deviceBtns.forEach(e => {
+            e.classList.remove('dark', 'light');
+        })
+        
+        for (let i = 0; i < deviceBtns.length; i++) {
+            if(deviceBtns[i].classList.contains('selected')){
+                theme.getAttribute('href') == './css/theme/light.css' ? deviceBtns[i].classList.add('light') : deviceBtns[i].classList.add('dark')
+            }
+        }
+    }
+
     theme.getAttribute('href') === './css/theme/light.css' ? e.classList.add('light') : e.classList.add('dark');
+
+    if(selDiv === selectedDivTheme){
+        selDiv.style.left = theme.getAttribute('href') === './css/theme/light.css' ? '0' : '50%';
+    }
+    else{
+        selDiv.style.left == '0px' ? selDiv.style.left = '50%' : selDiv.style.left = '0';
+        changeDeviceImg()
+    }
+
+    removeSelection(arr);
+    e.classList.add('selected');
 }
 
 /* Function that change the current language when it is clicked and call the changeLang function */
@@ -106,5 +135,56 @@ function removeSelection(el){
             e.classList.remove('selected');
         }
     });
+}
+
+
+//Function that, depending on the weather(in particular on the icon and description), set the source for the images to display the correct weather icon
+function setImage(element, weather, icon, description){
+    if(weather.toLowerCase() == 'clear' || weather.toLowerCase() == 'sereno' || weather.toLowerCase() == 'claro'){
+        if(icon == '01d')
+            element.setAttribute('src', './assets/img/weather/clear-sun.png');
+        else
+            element.setAttribute('src', './assets/img/weather/moon.png');
+    }
+    else if(weather.toLowerCase() == 'clouds' || weather.toLowerCase() == 'nuvoloso' || weather.toLowerCase() == 'nubes'){
+        if(description == 'few clouds'){
+            if(icon == '02d')
+                element.setAttribute('src', './assets/img/weather/sun-lil-cloudy.png');
+            else
+                element.setAttribute('src', './assets/img/weather/night-lil-cloudy.png');
+        }
+        else if(description == 'scattered clouds'){
+            if(icon == '03d')
+                element.setAttribute('src', './assets/img/weather/sun-mid-cloudy.png');
+            else
+                element.setAttribute('src', './assets/img/weather/night-mid-cloudy.png');
+        } 
+        else
+            element.setAttribute('src', './assets/img/weather/broken-cloudy.png');    
+    }
+    else if((weather.toLowerCase() == 'rain' || weather.toLowerCase() == 'pioggia' || weather.toLowerCase() == 'lluvia') || (weather.toLowerCase() == 'drizzle' || weather.toLowerCase() == 'pioggerella' || weather.toLowerCase() == 'llovizna')){
+        if(description == 'shower rain' || description.includes('drizzle'))
+            element.setAttribute('src', './assets/img/weather/rain.png');
+        else{
+            if(icon == '10d')
+                element.setAttribute('src', './assets/img/weather/sun-rain.png');
+            else
+                element.setAttribute('src', './assets/img/weather/night-rain.png');
+        }
+    }
+    else if((weather.toLowerCase() == 'thunderstorm' || weather.toLowerCase() == 'temporale' || weather.toLowerCase() == 'tormenta') && (description.includes('rain') || description.includes('drizzle'))){
+        element.setAttribute('src', './assets/img/weather/heavyrain-storm.png');
+    }
+    else if((weather.toLowerCase() == 'thunderstorm' || weather.toLowerCase() == 'temporale' || weather.toLowerCase() == 'tormenta') && (!description.includes('rain') && !description.includes('drizzle'))){
+        element.setAttribute('src', './assets/img/weather/thunder.png');
+    }
+}
+
+
+//Function that changes the timezone of the date
+function changeTimeZone(date, timezone){
+    return new Date(
+        new Date(date).toLocaleString('en-US', { timeZone: timezone})
+    );
 }
 

@@ -8,9 +8,10 @@
         <link rel="stylesheet" href="./css/general-style.css">
         <link rel="stylesheet" href="./css/landing-page.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
         <title>FifoWeather Landing Page</title>
     </head>
-    <body>
+    <body onload="landApi()">
         <div class="wrapper">
             <header>
                 <h1>FifoWeather</h1>
@@ -52,7 +53,7 @@
             </header>
     
             <main>
-                <div class="text">
+                <div class="text" data-aos="fade-right">
                     <h1>
                         Rapid and accurate <br>
                         forecastest weather
@@ -65,18 +66,21 @@
                     </a>
                 </div>
     
-                <div class="weather-example">
+                <div class="weather-example" data-aos="fade-left">
                     <img src="./assets/img/weather/sun-rain.png" alt="bg-w">
                     <img src="./assets/img/weather/thunder.png" alt="bg-w">
                     <img src="./assets/img/weather/night-lil-cloudy.png" alt="bg-w">
 
                     <div class="data">
-                        <h2 class="city">Palermo</h2>
-                        <img src="./assets/img/weather/sun-lil-cloudy.png" alt="weather">
+                        <div class="info">
+                            <p></p>
+                            <h2 class="city"></h2>
+                        </div>
+                        <img src="" alt="weather" id="weather-img">
 
                         <div class="info">
-                            <h2 class="temp">20°</h2>
-                            <h2 class="weather">Raining</h2>
+                            <h2 class="temp"></h2>
+                            <h2 class="weather"></h2>
                         </div>
                     </div>
 
@@ -85,10 +89,10 @@
             </main>
     
             <div class="services">
-                <h2>What we offer</h2>
+                <h2 data-aos="fade-right">What we offer</h2>
                 
                 <div class="wrapper">
-                    <div class="service">
+                    <div class="service" data-aos="fade-up">
                         <div class="img">
                             <img src="./assets/img/icons/globe.svg" alt="world" class="svg">
                         </div>
@@ -99,7 +103,7 @@
                         </p>
                     </div>
     
-                    <div class="service">
+                    <div class="service" data-aos="fade-up">
                         <div class="img">
                             <img src="./assets/img/icons/fast.svg" alt="fast" class="svg">
                         </div>
@@ -111,7 +115,7 @@
                         </p>
                     </div>
     
-                    <div class="service">
+                    <div class="service" data-aos="fade-up">
                         <div class="img">
                             <img src="./assets/img/icons/calendar.svg" alt="time option" class="svg">
                         </div>
@@ -127,7 +131,7 @@
     
             <div class="about">
                 <div class="app">
-                    <div class="text">
+                    <div class="text" data-aos="fade-right">
                         <h1>
                             All the information that
                             <span>you need to know.</span>
@@ -138,27 +142,29 @@
                         </h3>
                     </div>
     
-                    <div class="app-images">
+                    <div class="app-images" data-aos="fade-left">
                         <div class="btn-slider">
-                            <div class="btn selected light">
-                                <img src="./assets/img/icons/smartphone.svg" alt="phone">
+                            <div class="btn selected">
+                                <img src="./assets/img/icons/smartphone.svg" alt="phone-icon">
                             </div>
                             <div class="btn">
-                                <img src="./assets/img/icons/monitor.svg" alt="desktop">
+                                <img src="./assets/img/icons/monitor.svg" alt="desktop-icon">
                             </div>
                             
     
-                            <div class="selected-btn"></div>
+                            <div class="selected-btn" style="left: 0"></div>
                         </div>
     
-                        <img src="./assets/img/landing-page/light-phone.png" alt="app">
+                        <img src="" alt="phone" id="app">
+
+                        <p>Click the image to see it better.</p>
                     </div>
                 </div>
     
                 <div class="api">
-                    <img src="./assets/img/landing-page/light-api.png" alt="api">
+                    <img src="./assets/img/landing-page/light-api.png" alt="api" data-aos="fade-right">
     
-                    <div class="text">
+                    <div class="text" data-aos="fade-left">
                         <h1>
                             All the data came from
                             <span>Open Weather’s API.</span>
@@ -171,7 +177,7 @@
                 </div>
             </div>
     
-            <div class="end">
+            <div class="end" data-aos="slide-up">
                 <h1>Try FifoWeather now!</h1>
                 <a href="./index.html" target="_blank" rel="noopener noreferrer">andreafifo.github.io/FifoWeather</a>
             </div>
@@ -210,5 +216,7 @@
 
         <script src="./js/cookie.js"></script>
         <script src="./js/general-script.js"></script>
+        <script src="./js/landing-page.js"></script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     </body>
 </html>

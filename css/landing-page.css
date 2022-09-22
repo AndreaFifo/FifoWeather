@@ -1,5 +1,5 @@
 main, .services, .about, .end{
-    margin: 30px 0;
+    padding: 40px 0;
 }
 
 main{
@@ -146,6 +146,15 @@ main .weather-example .data{
     font-family: 'Lexend-SemiBold';
 }
 
+main .weather-example .data .info{
+    display: flex;
+    flex-direction: column;
+}
+
+main .weather-example .data .info p{
+    font-size: 14px;
+}
+
 main .weather-example .data h2.weather{
     background: var(--land-weather-text);
     -webkit-background-clip: text;
@@ -166,6 +175,7 @@ main .weather-example .data .city{
 
 main .weather-example .data .info .temp{
     font-size: clamp(1.875rem, 1.3281rem + 3.1250vw, 2.5rem);
+    text-align: end;
 }
 
 @media screen and (max-width: 1200px) {
@@ -287,8 +297,8 @@ main .weather-example .data .info .temp{
     }
 
     main .weather-example{
-        max-width: 250px;
-        max-height: 250px;
+        max-width: 260px;
+        max-height: 260px;
     }
 
     main .weather-example img[alt="bg-w"]{
@@ -440,6 +450,10 @@ main .weather-example .data .info .temp{
     gap: 100px;
 }
 
+.about .app{
+    min-height: 680px;
+}
+
 .about .app, .about .api{
     display: flex;
     align-items: center;
@@ -473,13 +487,53 @@ main .weather-example .data .info .temp{
     position: relative;
 }
 
+.about .app-images img[alt="pc"] ~ p{
+    display: none;
+
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+
+    color: var(--primary);
+}
+
+@media screen and (min-width: 550px) and (max-width: 960px){
+    .about .app-images img[alt="pc"] ~ p{
+        display: none !important;
+
+        bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .about .app-images p{
+        font-size: 12px;
+
+        bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .about .app-images img[alt="pc"] ~ p{
+        bottom: 0px;
+    }
+}
+
 .about .app .app-images, .about .api img{
     width: 50%;
     max-width: 600px;
 }
 
-.about .app-images img[alt="app"]{
+.about .app-images img[alt="phone"], .about .app-images img[alt="pc"]{
     width: 100%;
+}
+
+.about .app-images img[alt="phone"] ~ p{
+    display: none;
+}
+
+.about .app-images:hover img[alt="pc"]{
+    filter: brightness(0.97);
 }
 
 .about .app .app-images .btn-slider{
@@ -495,6 +549,25 @@ main .weather-example .data .info .temp{
         
         top: 10px;
         left: 60px;
+    }
+
+    .about .app .app-images .btn-slider .btn img{
+        width: 22px;
+    }
+
+    .about .app .app-images .btn-slider .selected-btn{
+        height: 30px;
+    }
+
+    .about .app-images img[alt="pc"] ~ p{
+        display: block;
+    }
+}
+
+@media screen and (min-width: 401px) and (max-width: 500px){
+    .about .app .app-images .btn-slider{
+        top: 0px;
+        left: 30px;
     }
 
     .about .app .app-images .btn-slider .btn img{
@@ -523,6 +596,8 @@ main .weather-example .data .info .temp{
 
 @media screen and (max-width: 960px){
     .about .app{
+        min-height: 400px;
+
         flex-direction: column;
         gap: 50px;
     }
@@ -558,8 +633,13 @@ main .weather-example .data .info .temp{
     }
     
 
-    .about .app-images img[alt="app"]{
+    .about .app-images img[alt="phone"]{
         max-width: 400px;
+        min-width: 250px;
+    }
+
+    .about .app-images img[alt="pc"]{
+        max-width: 550px;
         min-width: 250px;
     }
 }
@@ -679,3 +759,8 @@ footer .socials .social img{
 .svg{
     filter: var(--theme-icon);
 }
+
+
+.app-images p.animate__animated.animate__bounce {
+    --animate-delay: 1s;
+  }
