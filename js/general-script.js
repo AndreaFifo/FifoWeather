@@ -27,7 +27,6 @@ window.addEventListener('load', () => {
     }
 
     if(window.location.pathname == '/FifoWeather/landing-page.html')
-        console.log(1)
         changeDeviceImg(true)
 })
 
@@ -60,11 +59,11 @@ themeBtns.forEach(e => {
         if(!e.classList.contains('selected')){
             theme.setAttribute('href', theme.getAttribute('href') === './css/theme/light.css' ? './css/theme/dark.css' : './css/theme/light.css');
         
-            changeBtnTheme(e, selectedDivTheme, themeBtns, window.location.pathname == '/landing-page.html' ? appBtnImgs : null)
+            changeBtnTheme(e, selectedDivTheme, themeBtns, window.location.pathname == '/FifoWeather/landing-page.html' ? appBtnImgs : null)
             if(window.location.pathname == '/FifoWeather/landing-page.html')
                 changeDeviceImg(true)
 
-            if(window.location.pathname == '/index.html'){
+            if(window.location.pathname == '/FifoWeather/index.html'){
                 changeChartTheme(theme.getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark');
             }
             
