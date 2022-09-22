@@ -231,8 +231,6 @@ main .weather-example .data .info .temp{
         min-height: 528px;
 
         flex-direction: column;
-
-        margin: 20px 0 30px;
     }
 
     main .text{
