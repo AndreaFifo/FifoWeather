@@ -6,11 +6,11 @@ const ipGeocalizationKey = '77aa98107a2640f6bfc5e467f59fef9c';
 window.addEventListener('load', () => {
     if(getCookie('theme') == 'dark'){
         document.getElementById('theme').setAttribute('href', './css/theme/dark.css')
-        changeBtnTheme(document.querySelector('#lgt-theme-icon').parentElement, selectedDivTheme, themeBtns, window.location.pathname == '/landing-page.html' ? appBtnImgs : null);
+        changeBtnTheme(document.querySelector('#lgt-theme-icon').parentElement, selectedDivTheme, themeBtns, window.location.pathname == '/FifoWeather/landing-page.html' ? appBtnImgs : null);
     }
     else{
         document.getElementById('theme').setAttribute('href', './css/theme/light.css');
-        changeBtnTheme(document.querySelector('#drk-theme-icon').parentElement, selectedDivTheme, themeBtns, window.location.pathname == '/landing-page.html' ? appBtnImgs : null);
+        changeBtnTheme(document.querySelector('#drk-theme-icon').parentElement, selectedDivTheme, themeBtns, window.location.pathname == '/FifoWeather/landing-page.html' ? appBtnImgs : null);
     }
 
     lang = getCookie('lang');
@@ -21,12 +21,13 @@ window.addEventListener('load', () => {
         }
     })
 
-    if(window.location.pathname == '/index.html'){
+    if(window.location.pathname == '/FifoWeather/index.html'){
         changeChartTheme(document.getElementById('theme').getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark');
         changeLangApp(getCookie('lang'));
     }
 
-    if(window.location.pathname == '/landing-page.html')
+    if(window.location.pathname == '/FifoWeather/landing-page.html')
+        console.log(1)
         changeDeviceImg(true)
 })
 
@@ -60,7 +61,7 @@ themeBtns.forEach(e => {
             theme.setAttribute('href', theme.getAttribute('href') === './css/theme/light.css' ? './css/theme/dark.css' : './css/theme/light.css');
         
             changeBtnTheme(e, selectedDivTheme, themeBtns, window.location.pathname == '/landing-page.html' ? appBtnImgs : null)
-            if(window.location.pathname == '/landing-page.html')
+            if(window.location.pathname == '/FifoWeather/landing-page.html')
                 changeDeviceImg(true)
 
             if(window.location.pathname == '/index.html'){
@@ -109,7 +110,7 @@ languages.forEach(e => {
     e.addEventListener('click', () => {
         if(!e.classList.contains('selected')){
             lang = e.getAttribute('value');
-            if(window.location.pathname == '/index.html'){
+            if(window.location.pathname == '/FifoWeather/index.html'){
                 changeLangApp(lang);
             }
             else{
@@ -121,7 +122,7 @@ languages.forEach(e => {
 
             setCookie('lang', lang, 30);
 
-            if(window.location.pathname == '/index.html'){
+            if(window.location.pathname == '/FifoWeather/index.html'){
                 if((searchBar.value.trim() != "" && searchBar.value.trim() != null) || (lat != 0 && long != 0))
                     initializationPage()
             }
