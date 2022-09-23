@@ -26,8 +26,10 @@ window.addEventListener('load', () => {
         changeLangApp(getCookie('lang'));
     }
 
-    if(window.location.pathname == '/FifoWeather/landing-page.html')
-        changeDeviceImg(true)
+    if(window.location.pathname == '/FifoWeather/landing-page.html'){
+        changeDeviceImg(true);
+        changeLangLand(lang);
+    }
 })
 
 /* Using of hamburger icon */
@@ -109,7 +111,7 @@ languages.forEach(e => {
     e.addEventListener('click', () => {
         if(!e.classList.contains('selected')){
             lang = e.getAttribute('value');
-            if(window.location.pathname == '/FifoWeather/index.html'){
+            if(window.location.pathname == '/index.html'){
                 changeLangApp(lang);
             }
             else{
@@ -186,5 +188,34 @@ function changeTimeZone(date, timezone){
     return new Date(
         new Date(date).toLocaleString('en-US', { timeZone: timezone})
     );
+}
+
+
+//Object that contain weather condition(Rain, Clear ecc.) in the other languages
+const weatherTranslate = {
+    en: {
+        Rain: 'Rain',
+        Thunderstorm: 'Thunderstorm',
+        Drizzle: 'Drizzle',
+        Snow: 'Snow',
+        Clear: 'Clear',
+        Clouds: 'Clouds'
+    },
+    it: {
+        Rain: 'Pioggia',
+        Thunderstorm: 'Temporale',
+        Drizzle: 'Pioggerella',
+        Snow: 'Neve',
+        Clear: 'Sereno',
+        Clouds: 'Nuvoloso'
+    },
+    es: {
+        Rain: 'Lluvia',
+        Thunderstorm: 'Tormenta',
+        Drizzle: 'Llovizna',
+        Snow: 'Nieve',
+        Clear: 'Claro',
+        Clouds: 'Nubes'
+    }
 }
 

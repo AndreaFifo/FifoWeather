@@ -16,34 +16,6 @@ let hourlyData = {};
 
 let graphData = [];
 
-//Object that contain weather condition(Rain, Clear ecc.) in the other languages
-const weatherTranslate = {
-    en: {
-        Rain: 'Rain',
-        Thunderstorm: 'Thunderstorme',
-        Drizzle: 'Drizzle',
-        Snow: 'Snow',
-        Clear: 'Clear',
-        Clouds: 'Clouds'
-    },
-    it: {
-        Rain: 'Pioggia',
-        Thunderstorm: 'Temporale',
-        Drizzle: 'Pioggerella',
-        Snow: 'Neve',
-        Clear: 'Sereno',
-        Clouds: 'Nuvoloso'
-    },
-    es: {
-        Rain: 'Lluvia',
-        Thunderstorm: 'Tormenta',
-        Drizzle: 'Llovizna',
-        Snow: 'Nieve',
-        Clear: 'Claro',
-        Clouds: 'Nubes'
-    }
-}
-
 //Function that start the API request, it will fetch all the data and will call other functions to display/calculate other information
 function launchApi(first = false){
     //Geolocalization API

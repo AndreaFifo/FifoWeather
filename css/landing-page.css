@@ -139,7 +139,7 @@ main .weather-example .data{
 
     position: relative;
 
-    z-index: 10;
+    z-index: 8;
 
     color: var(--primary);
     text-align: center;
@@ -175,7 +175,6 @@ main .weather-example .data .city{
 
 main .weather-example .data .info .temp{
     font-size: clamp(1.875rem, 1.3281rem + 3.1250vw, 2.5rem);
-    text-align: end;
 }
 
 @media screen and (max-width: 1200px) {
@@ -199,21 +198,6 @@ main .weather-example .data .info .temp{
     main .weather-example > img:nth-child(3){
         bottom: -50px;
         left: -60px;
-    }
-    
-    main .weather-example .data{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    
-        position: relative;
-    
-        z-index: 10;
-    
-        color: var(--primary);
-        text-align: center;
-        font-family: 'Lexend-SemiBold';
     }
     
     main .weather-example .data img{
@@ -538,6 +522,10 @@ main .weather-example .data .info .temp{
     position: absolute;
     top: 20px;
     left: 60px;
+}
+
+.about .app .app-images .btn-slider:hover{
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1200px){
