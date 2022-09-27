@@ -111,7 +111,7 @@ languages.forEach(e => {
     e.addEventListener('click', () => {
         if(!e.classList.contains('selected')){
             lang = e.getAttribute('value');
-            if(window.location.pathname == '/index.html'){
+            if(window.location.pathname == '/FifoWeather/index.html'){
                 changeLangApp(lang);
             }
             else{
