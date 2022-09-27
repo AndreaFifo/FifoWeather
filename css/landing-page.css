@@ -469,38 +469,6 @@ main .weather-example .data .info .temp{
     position: relative;
 }
 
-.about .app-images img[alt="pc"] ~ p{
-    display: none;
-
-    position: absolute;
-    right: 0;
-    bottom: 30px;
-
-    color: var(--primary);
-}
-
-@media screen and (min-width: 550px) and (max-width: 960px){
-    .about .app-images img[alt="pc"] ~ p{
-        display: none !important;
-
-        bottom: 20px;
-    }
-}
-
-@media screen and (max-width: 550px) {
-    .about .app-images p{
-        font-size: 12px;
-
-        bottom: 10px;
-    }
-}
-
-@media screen and (max-width: 380px) {
-    .about .app-images img[alt="pc"] ~ p{
-        bottom: 0px;
-    }
-}
-
 .about .app .app-images, .about .api img{
     width: 50%;
     max-width: 600px;
@@ -508,10 +476,6 @@ main .weather-example .data .info .temp{
 
 .about .app-images img[alt="phone"], .about .app-images img[alt="pc"]{
     width: 100%;
-}
-
-.about .app-images img[alt="phone"] ~ p{
-    display: none;
 }
 
 .about .app-images:hover img[alt="pc"]{
@@ -543,10 +507,6 @@ main .weather-example .data .info .temp{
 
     .about .app .app-images .btn-slider .selected-btn{
         height: 30px;
-    }
-
-    .about .app-images img[alt="pc"] ~ p{
-        display: block;
     }
 }
 
@@ -749,4 +709,4 @@ footer .socials .social img{
 
 .app-images p.animate__animated.animate__bounce {
     --animate-delay: 1s;
-  }
+}

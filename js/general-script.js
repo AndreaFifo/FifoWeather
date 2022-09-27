@@ -22,8 +22,8 @@ window.addEventListener('load', () => {
     })
 
     if(window.location.pathname == '/FifoWeather/index.html'){
-        changeChartTheme(document.getElementById('theme').getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark');
-        changeLangApp(getCookie('lang'));
+        changeChartTheme(document.getElementById('theme').getAttribute('href') == './css/theme/light.css' ? 'light' : 'dark');
+        changeLangApp(lang);
     }
 
     if(window.location.pathname == '/FifoWeather/landing-page.html'){

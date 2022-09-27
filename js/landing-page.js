@@ -39,8 +39,7 @@ const landLanguages = {
         about: {
             app: {
                 h1: 'All the information that <span>you need to know.</span>',
-                h3: 'Thanks to our application, you can see all the weather information of the city where you live and your favorite cities. In particular, you can have access to all the hourly forecastes of the day and of the week.',
-                p: 'Click the image to see it better.'
+                h3: 'Thanks to our application, you can see all the weather information of the city where you live and your favorite cities. In particular, you can have access to all the hourly forecastes of the day and of the week.'
             },
             api: {
                 h1: 'All the data came from <span>Open Weather’s API.</span>',
@@ -77,8 +76,7 @@ const landLanguages = {
         about: {
             app: {
                 h1: 'Tutte le informazioni <span>che devi sapere.</span>',
-                h3: 'Grazie alla nostra applicazione, puoi vedere tutte le informazioni metereologiche della città dove vivi e delle tue città preferite. In particolare, puoi avere accesso alle previsione meteo orarie e giornaliere della settimana.',
-                p: "Clicca l'immagine per vederla meglio."
+                h3: 'Grazie alla nostra applicazione, puoi vedere tutte le informazioni metereologiche della città dove vivi e delle tue città preferite. In particolare, puoi avere accesso alle previsione meteo orarie e giornaliere della settimana.'
             },
             api: {
                 h1: 'I dati provengono <span>dalla API di OpenWeather</span>',
@@ -115,8 +113,7 @@ const landLanguages = {
         about: {
             app: {
                 h1: 'Toda la información que <span>necesitas saber.</span>',
-                h3: 'Gracias a nuestra aplicación, podrás ver toda la información meteorológica de la ciudad donde vives y de tus ciudades favoritas. En particular, puedes tener acceso a todas las previsiones horarias del día y de la semana.',
-                p: 'Haz clic en la imagen para verla mejor.'
+                h3: 'Gracias a nuestra aplicación, podrás ver toda la información meteorológica de la ciudad donde vives y de tus ciudades favoritas. En particular, puedes tener acceso a todas las previsiones horarias del día y de la semana.'
             },
             api: {
                 h1: 'Todos los datos provienen de <span>API de Open Weather.</span>',
@@ -195,14 +192,11 @@ function changeDeviceImg(changeTheme = false){
 
 function animateAppDevice(){
     const img = document.getElementById('app');
-    const p = document.querySelector('.about .app-images p')
 
     img.classList.add('animate__animated', 'animate__fadeInRight', 'animate__fast');
-    p.classList.add('animate__animated', 'animate__fadeInRight');
 
     img.addEventListener('animationend', () => {
         img.classList.remove('animate__animated', 'animate__fadeInRight', 'animate__fast');
-        p.classList.remove('animate__animated', 'animate__fadeInRight', 'animate__fadeInRight');
     })
 }
 
@@ -227,7 +221,6 @@ function changeLangLand(lang){
     
     document.querySelector('.about .app h1').innerHTML = landLanguages[lang]['about']['app']['h1'];
     document.querySelector('.about .app h3').innerHTML = landLanguages[lang]['about']['app']['h3'];
-    document.querySelector('.about .app p').innerHTML = landLanguages[lang]['about']['app']['p'];
 
     document.querySelector('.about .api h1').innerHTML = landLanguages[lang]['about']['api']['h1'];
     document.querySelector('.about .api h3').innerHTML = landLanguages[lang]['about']['api']['h3'];
