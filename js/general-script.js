@@ -30,8 +30,6 @@ window.addEventListener('load', () => {
         changeDeviceImg(true);
         changeLangLand(lang);
     }
-    
-    removeLoadingAnimation();
 })
 
 /* Using of hamburger icon */
@@ -221,9 +219,17 @@ const weatherTranslate = {
     }
 }
 
-function removeLoadingAnimation(){
+function removeLoadingAnimation(first = false){
     setTimeout(function(){
+        document.querySelector('.loading').classList.add('animate__animated', 'animate__fadeOut', 'animate__faster');
+        document.querySelector('.loading').addEventListener('animationend', () => {
+            document.querySelector('.loading').classList.remove('animate__animated', 'animate__fadeIn', 'animate__faster');
+            document.querySelector('.loading').remove();
+        })
+
         document.body.classList.remove('no-overflow');
-        document.querySelector('.loading').remove();
-    }, 1000);
+
+
+        launchApi(first);
+    }, 2500);
 }
