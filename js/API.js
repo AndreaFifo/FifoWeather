@@ -51,6 +51,8 @@ function launchApi(first = false){
             return response.json();
         })
         .then((data) => {
+            animateEverything();
+            
             //Initialize date based on timezone of the city requested
             date = changeTimeZone(new Date(), data.timezone);
         
@@ -87,8 +89,6 @@ function launchApi(first = false){
             setInterval(() => {
                 swiper.resize();
             }, 1);
-
-            animateEverything();
         })
         .catch((err) => {
             console.log(err);

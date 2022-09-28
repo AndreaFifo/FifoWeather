@@ -29,5 +29,5 @@
 
     --footer: #0F1926;
 
-    --land-weather-text: linear-gradient(180deg, var(--primary) 0%, #d2d2d2 100%)
+    --land-weather-text: linear-gradient(180deg, var(--primary) 0%, #d2d2d2 100%);
 }

@@ -219,3 +219,8 @@ const weatherTranslate = {
     }
 }
 
+function removeLoadingAnimation(){
+    document.querySelector('.loading').remove();
+
+    document.body.classList.remove('no-overflow');
+}
