@@ -30,6 +30,8 @@ window.addEventListener('load', () => {
         changeDeviceImg(true);
         changeLangLand(lang);
     }
+    
+    removeLoadingAnimation();
 })
 
 /* Using of hamburger icon */
@@ -220,7 +222,8 @@ const weatherTranslate = {
 }
 
 function removeLoadingAnimation(){
-    document.querySelector('.loading').remove();
-
-    document.body.classList.remove('no-overflow');
+    setTimeout(function(){
+        document.body.classList.remove('no-overflow');
+        document.querySelector('.loading').remove();
+    }, 1000);
 }
