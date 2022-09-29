@@ -51,7 +51,8 @@ main .text .try-it{
 }
 
 main .text .try-it h2{
-    font-size: clamp(1rem, -1.0000rem + 3.3333vw, 1.5rem);
+    font-size: clamp(1rem, 0.0000rem + 1.6667vw, 1.25rem);
+    font-family: 'Lexend-Light';
 }
 
 @media screen and (max-width: 600px) {
@@ -478,10 +479,6 @@ main .weather-example .data .info .temp{
     width: 100%;
 }
 
-.about .app-images:hover img[alt="pc"]{
-    filter: brightness(0.97);
-}
-
 .about .app .app-images .btn-slider{
     position: absolute;
     top: 20px;
@@ -665,21 +662,30 @@ main .weather-example .data .info .temp{
 }
 
 .footer footer h3{
-    color: #E8E8E8;
+    margin-top: 5px;
+    color: rgb(230, 230, 230);
     font-family: 'Lexend-Light';
-    letter-spacing: 1px;
 }
 
 .footer footer .socials{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     flex-wrap: wrap;
 
-    row-gap: 30px;
+    row-gap: 20px;
 }
 
-.footer footer .socials a{
+footer .socials .list{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+footer .socials p{
+    color: var(--secondary);
+}
+
+footer .socials .list a{
     text-decoration: none;
 }
 
@@ -694,11 +700,16 @@ footer .socials .social{
 
 footer .socials .social img{
     width: 24px;
+    transition: all 150ms ease-in-out;
 }
 
-@media screen and (max-width: 524px) {
-    .footer{
-        text-align: center;
+footer .socials .social:hover img{
+    transform: scale(1.2);
+}
+
+@media screen and (max-width: 580px) {
+    footer{
+        flex-direction: column;
     }
 }
 
