@@ -225,10 +225,8 @@ function removeLoadingAnimation(first = false){
         document.querySelector('.loading').addEventListener('animationend', () => {
             document.querySelector('.loading').classList.remove('animate__animated', 'animate__fadeIn', 'animate__faster');
             document.querySelector('.loading').remove();
+            document.body.classList.remove('no-overflow');
         })
-
-        document.body.classList.remove('no-overflow');
-
 
         launchApi(first);
     }, 2500);
