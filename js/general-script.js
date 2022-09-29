@@ -226,8 +226,13 @@ function removeLoadingAnimation(first = false){
             document.querySelector('.loading').classList.remove('animate__animated', 'animate__fadeIn', 'animate__faster');
             document.querySelector('.loading').remove();
             document.body.classList.remove('no-overflow');
-        })
 
-        launchApi(first);
+            AOS.refresh();
+        });
+
+        if(window.location.pathname == '/FifoWeather/' || window.location.pathname == '/FifoWeather/index.html')
+            launchApi(first);
+        else
+            landApi();
     }, 2500);
 }
