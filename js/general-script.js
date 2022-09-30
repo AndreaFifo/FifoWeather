@@ -245,10 +245,10 @@ function getTheme(){
 
 function setTheme(newTheme){
     const oldTheme = document.documentElement.classList.value;
-    document.documentElement.classList.remove(oldTheme);
+    document.documentElement.classList.toggle(oldTheme);
 
     if(newTheme == 'light')
-        document.documentElement.classList.add('light-theme');
+        document.documentElement.classList.toggle('light-theme');
     else if(newTheme == 'dark')
-        document.documentElement.classList.add('dark-theme');
+        document.documentElement.classList.toggle('dark-theme');
 }

@@ -95,15 +95,16 @@
     padding: 0;
 
     box-sizing: border-box;
-}
 
+    transition: border 100ms ease, color 100ms ease, background 100ms ease, box-shadow 100ms ease;
+}
 
 html, body{
     overflow-x: hidden;
 }
 
 body{
-    background: var(--bg);
+    background-image: var(--bg);
     min-height: 100vh;
     font-family: 'Lexend-Regular';
 }
