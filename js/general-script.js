@@ -4,14 +4,11 @@ const ipGeocalizationKey = '77aa98107a2640f6bfc5e467f59fef9c';
 
 /* Setting theme and language during page loading */
 window.addEventListener('load', () => {
-    if(getCookie('theme') == 'dark'){
-        document.getElementById('theme').setAttribute('href', './css/theme/dark.css')
+    setTheme(getCookie('theme'));
+    if(getCookie('theme') == 'dark')
         changeBtnTheme(document.querySelector('#lgt-theme-icon').parentElement, selectedDivTheme, themeBtns, window.location.pathname == '/FifoWeather/landing-page.html' ? appBtnImgs : null);
-    }
-    else{
-        document.getElementById('theme').setAttribute('href', './css/theme/light.css');
+    else
         changeBtnTheme(document.querySelector('#drk-theme-icon').parentElement, selectedDivTheme, themeBtns, window.location.pathname == '/FifoWeather/landing-page.html' ? appBtnImgs : null);
-    }
 
     lang = getCookie('lang');
     document.querySelectorAll('.lang ul li').forEach(e => {
@@ -22,7 +19,7 @@ window.addEventListener('load', () => {
     })
 
     if(window.location.pathname == '/FifoWeather/' || window.location.pathname == '/FifoWeather/index.html'){
-        changeChartTheme(document.getElementById('theme').getAttribute('href') == './css/theme/light.css' ? 'light' : 'dark');
+        changeChartTheme(getTheme());
         changeLangApp(lang);
     }
 
@@ -53,23 +50,22 @@ menuBtn.addEventListener("click", () => {
 
 /* Changing theme of the page */
 const themeBtns = document.querySelectorAll('.right .btn-slider .btn');
-const theme = document.getElementById('theme');
 const selectedDivTheme = document.querySelector('.right .btn-slider .selected-btn');
     
 themeBtns.forEach(e => {
     e.addEventListener('click', () => {
         if(!e.classList.contains('selected')){
-            theme.setAttribute('href', theme.getAttribute('href') === './css/theme/light.css' ? './css/theme/dark.css' : './css/theme/light.css');
+            setTheme(getTheme() == 'dark' ? 'light' : 'dark');
         
             changeBtnTheme(e, selectedDivTheme, themeBtns, window.location.pathname == '/FifoWeather/landing-page.html' ? appBtnImgs : null)
             if(window.location.pathname == '/FifoWeather/landing-page.html')
                 changeDeviceImg(true)
 
             if(window.location.pathname == '/FifoWeather/' || window.location.pathname == '/FifoWeather/index.html'){
-                changeChartTheme(theme.getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark');
+                changeChartTheme(getTheme());
             }
             
-            setCookie('theme', theme.getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark', 30);
+            setCookie('theme', getTheme(), 30);
         }
     });
 })
@@ -86,15 +82,15 @@ function changeBtnTheme(e, selDiv = selectedDivTheme, arr = themeBtns, deviceBtn
         
         for (let i = 0; i < deviceBtns.length; i++) {
             if(deviceBtns[i].classList.contains('selected')){
-                theme.getAttribute('href') == './css/theme/light.css' ? deviceBtns[i].classList.add('light') : deviceBtns[i].classList.add('dark')
+                deviceBtns[i].classList.add(getTheme())
             }
         }
     }
 
-    theme.getAttribute('href') === './css/theme/light.css' ? e.classList.add('light') : e.classList.add('dark');
+    e.classList.add(getTheme())
 
     if(selDiv === selectedDivTheme){
-        selDiv.style.left = theme.getAttribute('href') === './css/theme/light.css' ? '0' : '50%';
+        selDiv.style.left = getTheme() == 'light' ? '0' : '50%';
     }
     else{
         selDiv.style.left == '0px' ? selDiv.style.left = '50%' : selDiv.style.left = '0';
@@ -227,7 +223,8 @@ function removeLoadingAnimation(first = false){
             document.querySelector('.loading').remove();
             document.body.classList.remove('no-overflow');
 
-            AOS.refresh();
+            if(!first)
+                AOS.refresh();
         });
 
         if(window.location.pathname == '/FifoWeather/' || window.location.pathname == '/FifoWeather/index.html')
@@ -235,4 +232,23 @@ function removeLoadingAnimation(first = false){
         else
             landApi();
     }, 2500);
+}
+
+function getTheme(){
+    const theme = document.documentElement.classList.value;
+    
+    if(theme == 'light-theme')
+        return 'light';
+    else if(theme == 'dark-theme')
+        return 'dark';
+}
+
+function setTheme(newTheme){
+    const oldTheme = document.documentElement.classList.value;
+    document.documentElement.classList.remove(oldTheme);
+
+    if(newTheme == 'light')
+        document.documentElement.classList.add('light-theme');
+    else if(newTheme == 'dark')
+        document.documentElement.classList.add('dark-theme');
 }
