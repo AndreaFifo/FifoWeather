@@ -59,7 +59,7 @@ themeBtns.forEach(e => {
         
             changeBtnTheme(e, selectedDivTheme, themeBtns, window.location.pathname == '/FifoWeather/landing-page.html' ? appBtnImgs : null)
             if(window.location.pathname == '/FifoWeather/landing-page.html')
-                changeDeviceImg(true)
+                changeDeviceImg()
 
             if(window.location.pathname == '/FifoWeather/' || window.location.pathname == '/FifoWeather/index.html'){
                 changeChartTheme(getTheme());
@@ -82,7 +82,7 @@ function changeBtnTheme(e, selDiv = selectedDivTheme, arr = themeBtns, deviceBtn
         
         for (let i = 0; i < deviceBtns.length; i++) {
             if(deviceBtns[i].classList.contains('selected')){
-                deviceBtns[i].classList.add(getTheme())
+                deviceBtns[i].classList.add(getTheme());
             }
         }
     }
@@ -94,7 +94,7 @@ function changeBtnTheme(e, selDiv = selectedDivTheme, arr = themeBtns, deviceBtn
     }
     else{
         selDiv.style.left == '0px' ? selDiv.style.left = '50%' : selDiv.style.left = '0';
-        changeDeviceImg()
+        changeDeviceImg();
     }
 
     removeSelection(arr);
@@ -246,6 +246,9 @@ function getTheme(){
 function setTheme(newTheme){
     const oldTheme = document.documentElement.classList.value;
     document.documentElement.classList.toggle(oldTheme);
+
+    if(window.location.pathname == '/FifoWeather/landing-page.html')
+        changeDeviceImg();
 
     if(newTheme == 'light')
         document.documentElement.classList.toggle('light-theme');

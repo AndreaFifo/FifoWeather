@@ -175,7 +175,6 @@ appBtnImgs.forEach(e => {
 function changeDeviceImg(changeTheme = false){
     const img = document.querySelector('#app')
 
-    let themeStr = theme.getAttribute('href') === './css/theme/light.css' ? 'light' : 'dark';
     let device = img.getAttribute('alt');
 
     if(changeTheme == false){
@@ -186,7 +185,7 @@ function changeDeviceImg(changeTheme = false){
 
     img.setAttribute(
         'src',
-        './assets/img/landing-page/' + themeStr + '-' + device + '.png'
+        './assets/img/landing-page/' + getTheme() + '-' + device + '.png'
     );
 }
 
